@@ -1,0 +1,15 @@
+<input 
+    id="username"
+    placeholder="Username..."
+    [(ngModel)]="appUser.username"
+    type="text"
+>
+
+<input 
+    id="password"
+    placeholder="Password"
+    [(ngModel)]="appUser.password"
+    type="password"
+>
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
