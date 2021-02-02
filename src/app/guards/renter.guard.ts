@@ -7,10 +7,8 @@ import { AbstractGuard } from "./abstract-guard.model";
 
 @Injectable()
 export class RenterGuard extends AbstractGuard implements CanActivate {
-
-    @Inject('loginService') private loginService: LoginService;
     
-    constructor(toastr: ToastrManager, router: Router) {
+    constructor(private loginService: LoginService, toastr: ToastrManager, router: Router) {
         super(toastr, router);
     }
 
@@ -19,6 +17,7 @@ export class RenterGuard extends AbstractGuard implements CanActivate {
         if (!hasAccess) {
            this.showWarningAndNavigateBack();
         }
+        console.log("RenterGuard");
         return hasAccess;
     }
     

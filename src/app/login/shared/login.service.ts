@@ -50,26 +50,35 @@ export class LoginService {
         }
     }
 
-    getTokenDecoded() {
-        return ServicesUtils.jwtDecode(this.sessionObjectService.getToken());
+    private decodeToken(token: string) {
+        return ServicesUtils.jwtDecode(token);
     }
 
     getUsernameFromToken() {
-        let decodedToken = this.getTokenDecoded();
+        let token = this.sessionObjectService.getToken();
+        let decodedToken = this.decodeToken(token);
         return decodedToken["sub"];
     }
 
     getUserIdFromToken() {
-        let tokenDecoded = this.getTokenDecoded();
+        let token = this.sessionObjectService.getToken();
+        let tokenDecoded = this.decodeToken(token);
         return tokenDecoded["userId"];
     }
 
     isRoleInRoles(rol: string) {
-        let tokenDecoded = this.getTokenDecoded();
-        let roles: Role[] = tokenDecoded["authorities"];
-        for (let role of roles) {
-            if (role.role === rol) {
-                return true;
+        if (this.isTokenExpired()) {
+            return false;
+        }
+        else {
+            let sessionObject: SessionObject = this.sessionObjectService.getSessionObject();
+            let token = sessionObject.token;
+            let tokenDecoded = this.decodeToken(token);
+            let roles: Role[] = tokenDecoded["authorities"];
+            for (let role of roles) {
+                if (role.role === rol) {
+                    return true;
+                }
             }
         }
         return false;
@@ -88,15 +97,19 @@ export class LoginService {
     }
 
     isTokenExpired() {
-        let sessionObject: SessionObject = this.sessionObjectService.getSessionObject();
-        if (sessionObject) {
+        let sessionObject = this.sessionObjectService.getSessionObject();
+        if (this.isNullOrUndefinedTokenFromSessionObject(sessionObject)) {
+            return true;
+        } else {
             let token = sessionObject.token;
-            if (token) {
-                let date: Date = token["exp"];
-                return date.valueOf() < new Date().valueOf();
-            }
+            token = this.decodeToken(token);
+            let date = token["exp"];
+            return date.valueOf() > new Date().valueOf();
         }
-        return true;
+    }
+
+    private isNullOrUndefinedTokenFromSessionObject(sessionObject: SessionObject) {
+        return ServicesUtils.isNullOrUndefined(sessionObject) || ServicesUtils.isNullOrUndefined(sessionObject.token);
     }
 
 }

@@ -1,0 +1,33 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #appDrawer mode="side" opened="true" autosize>
+        <mat-nav-list >
+            <app-menu-list-item *ngFor="let item of navItems" [item]="item">
+            </app-menu-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="padding: 2%;">
+        <div fxLayout="row">
+            <div id="hideButton">
+                <button
+                style="outline:0"
+                mat-icon-button
+                id="menu"
+                (click)="appDrawer.toggle()"
+                >
+                <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>
+                <button
+                    style="outline:0"
+                    mat-icon-button
+                    id="back"
+                    (click)="back()"
+                >
+                    <mat-icon>undo</mat-icon>
+                </button>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

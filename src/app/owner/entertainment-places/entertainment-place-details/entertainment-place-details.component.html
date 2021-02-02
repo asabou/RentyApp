@@ -1,0 +1,12 @@
+<div *ngIf="!canRender" class="spinner-box">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="canRender">
+    <p>Name: {{ entertainmentPlace.name }} </p>
+    <p>EntertainmentPlaceDetails</p>
+    <div fxLayout="row" fxLayoutGap="2% grid">
+        <div [fxFlex]="50 + '%'" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of entertainmentActivities">
+            <app-entertainment-place-item [entertainmentPlace]="item"></app-entertainment-place-item>
+        </div>
+    </div>
+</div>

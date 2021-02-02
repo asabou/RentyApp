@@ -4,7 +4,8 @@ import { Observable } from "rxjs";
 import { UserDetails } from "src/app/admin/users/shared/user-details.model";
 import { User } from "src/app/admin/users/shared/user.model";
 import { SERVER_URL } from "src/app/app.component";
-import { EntertainmentActivity } from "src/app/owner/shared/entertainment-activity.model";
+import { EntertainmentActivityInput } from "src/app/owner/entertainment-actvity/shared/entertainment-activity-input.model";
+import { EntertainmentActivity } from "src/app/owner/entertainment-actvity/shared/entertainment-activity.model";
 import { EntertainmentPlace } from "src/app/owner/shared/entertainment-place.model";
 import { ReservationInput } from "./reservation-input.model";
 import { ReservationOutput } from "./reservation-output.model";
@@ -50,8 +51,13 @@ export class RenterService {
         return this.http.put<User>(url, user);
     }
 
-    getEntertainmentActivitiesByEntertainmentPlaceId(id: number): Observable<EntertainmentActivity[]> {
+    getEntertainmentActivitiesByEntertainmentPlaceId(id: number): Observable<EntertainmentActivityInput[]> {
         let url = RENTER_URL + "/entertainment-activities-by-entertainment-place/" + id;
-        return this.http.get<EntertainmentActivity[]>(url);
+        return this.http.get<EntertainmentActivityInput[]>(url);
+    }
+
+    findEntertainmentPlace(id: number): Observable<EntertainmentPlace> {
+        let url = RENTER_URL + "/find-entertainment-place/" + id;
+        return this.http.get<EntertainmentPlace>(url);
     }
 }

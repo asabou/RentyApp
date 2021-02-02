@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { AUTHORIZATION } from "../login/shared/login.service";
@@ -6,29 +6,34 @@ import { catchError } from "rxjs/operators";
 import { SessionObjectService } from "../login/shared/session-object.service";
 import { ToastrManager } from "ng6-toastr-notifications";
 import { Message } from "../utils/message.model";
+import { SERVER_URL } from "../app.component";
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
     constructor(private sessionObjectService: SessionObjectService,
         private toastr: ToastrManager) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const authValue = req.headers.get(AUTHORIZATION);
-        if (authValue && authValue.startsWith("Basic")) {
-            return next.handle(req).pipe(
+        let url: string = req.url;
+        if (!url.includes(SERVER_URL + "/anon")) {
+            const authValue = req.headers.get(AUTHORIZATION);
+            if (authValue && authValue.startsWith("Basic")) {
+                return next.handle(req).pipe(
+                    catchError((error, caught) => {
+                        return this.handleError(error);
+                    })
+                );
+            }
+    
+            const authReq = req.clone({
+                headers: req.headers.set(AUTHORIZATION, "Bearer " + this.sessionObjectService.getToken())
+            });
+            return next.handle(authReq).pipe(
                 catchError((error, caught) => {
                     return this.handleError(error);
                 })
-            );
+            )
         }
-
-        const authReq = req.clone({
-            headers: req.headers.set(AUTHORIZATION, "Bearer " + this.sessionObjectService.getToken())
-        });
-        return next.handle(authReq).pipe(
-            catchError((error, caught) => {
-                return this.handleError(error);
-            })
-        )
+        return next.handle(req);
     }
 
     private handleError(err: HttpErrorResponse): Observable<any> {

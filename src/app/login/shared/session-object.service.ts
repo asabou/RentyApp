@@ -8,7 +8,7 @@ export const SESSION_OBJECT = "SESSION_OBJECT";
 export class SessionObjectService {
 
     createSessionObject() {
-        if (!localStorage.getItem(SESSION_OBJECT)) {
+        if (ServicesUtils.isNullOrUndefined(localStorage.getItem(SESSION_OBJECT))) {
             let sessionObject: SessionObject = new SessionObject();
             this.setSessionObject(sessionObject);
         }
@@ -22,7 +22,7 @@ export class SessionObjectService {
         localStorage.setItem(SESSION_OBJECT, ServicesUtils.jsonStringify(sessionObject));
     }
 
-    getSessionObject() {
+    getSessionObject(): SessionObject {
         return ServicesUtils.jsonParse(localStorage.getItem(SESSION_OBJECT));
     }
 

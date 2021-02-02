@@ -21,11 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.appUser).subscribe(); //TODO here navigate to next route or handle errors
-    console.log(this.loginService.getTokenDecoded());
-    this.adminService.getAllUsers().subscribe(users => {
-      console.log(users);
-    });
+    this.loginService.login(this.appUser).subscribe();
   }
 
   logout() {

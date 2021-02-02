@@ -22,6 +22,7 @@ export class AdminGuard extends AbstractGuard implements CanActivate {
         if (!hasAccess) {
             this.showWarningAndNavigateBack();
         }
+        console.log("AdminGuard");
         return hasAccess;
     }
 

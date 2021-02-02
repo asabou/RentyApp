@@ -20,4 +20,12 @@ export class ServicesUtils {
         return this.jwtHelper.decodeToken(data);
     }
 
+    static isNullOrUndefined(obj: any) {
+        return obj === null || obj === undefined;
+    }
+
+    static convertStringToNumber(data: string) {
+        return +data;
+    }
+
 }

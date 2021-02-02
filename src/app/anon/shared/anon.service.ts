@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { UserDetails } from "src/app/admin/users/shared/user-details.model";
 import { SERVER_URL } from "src/app/app.component";
-import { EntertainmentActivity } from "src/app/owner/shared/entertainment-activity.model";
+import { EntertainmentActivity } from "src/app/owner/entertainment-actvity/shared/entertainment-activity.model";
 import { EntertainmentPlace } from "src/app/owner/shared/entertainment-place.model";
 
 export const ANON_URL = SERVER_URL + "/anon";
