@@ -1,12 +1,9 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { AbstractComponent } from 'src/app/commons/abstract.component';
 import { RenterService } from 'src/app/renter/shared/renter.service';
 import { Constants } from 'src/app/utils/constants.model';
-import { ServicesUtils } from 'src/app/utils/services-utils.model';
-import { EntertainmentActivityInput } from '../../entertainment-actvity/shared/entertainment-activity-input.model';
+import { EntertainmentActivityInput } from '../../entertainment-activity/shared/entertainment-activity-input.model';
 import { EntertainmentPlace } from '../../shared/entertainment-place.model';
 
 @Component({
@@ -14,7 +11,7 @@ import { EntertainmentPlace } from '../../shared/entertainment-place.model';
   templateUrl: './entertainment-place-details.component.html',
   styleUrls: ['./entertainment-place-details.component.scss']
 })
-export class EntertainmentPlaceDetailsComponent extends AbstractComponent implements OnInit {
+export class EntertainmentPlaceDetailsComponent implements OnInit {
 
   canRender = false;
 
@@ -30,16 +27,22 @@ export class EntertainmentPlaceDetailsComponent extends AbstractComponent implem
   entertainmentPlace: EntertainmentPlace;
   entertainmentActivities: EntertainmentActivityInput[];
   
-  constructor(location: Location, private activeRoute: ActivatedRoute, private renterService: RenterService) { 
-    super(location);
+  constructor(private activeRoute: ActivatedRoute, private renterService: RenterService,
+    private router: Router) { 
   }
 
-  getEntityId(): number {
-    return ServicesUtils.convertStringToNumber(this.activeRoute.snapshot.paramMap.get(Constants.ID));
+  getEntityId(): string {
+    return this.activeRoute.snapshot.paramMap.get(Constants.ID);
   }
 
   ngOnInit(): void {
     this.getAllData();
+  }
+
+  onEntertainmentActivityClick(entAct: EntertainmentActivityInput) {
+    let entertainmentActivityId = entAct.entertainmentActivityId;
+    let entertainmentPlaceId = this.entertainmentPlace.id;
+    this.router.navigate(['reservation-scheduler'], { queryParams: { entertainmentPlace: entertainmentPlaceId, entertainmentActivity: entertainmentActivityId }});
   }
 
 }

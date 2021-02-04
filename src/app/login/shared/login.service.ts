@@ -54,10 +54,10 @@ export class LoginService {
         return ServicesUtils.jwtDecode(token);
     }
 
-    getUsernameFromToken() {
+    getUsernameFromToken(): string {
         let token = this.sessionObjectService.getToken();
         let decodedToken = this.decodeToken(token);
-        return decodedToken["sub"];
+        return decodedToken["sub"].toString();
     }
 
     getUserIdFromToken() {

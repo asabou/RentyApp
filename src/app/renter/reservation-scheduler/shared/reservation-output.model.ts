@@ -1,7 +1,7 @@
 export class ReservationOutput {
     entertainmentActivityId: number;
     entertainmentPlaceId: number;
-    reservationDate: Date;
+    reservationDate: string;
     reservationHour: number;
     rentalRepresentativeId: number;
 }

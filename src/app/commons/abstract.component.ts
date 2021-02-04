@@ -3,6 +3,7 @@ import { Location } from "@angular/common";
 export abstract class  AbstractComponent {
 
     constructor(public location: Location) {
+        this.getAllData();
     }
 
     back() {

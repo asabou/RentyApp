@@ -13,10 +13,9 @@ export class EntertainmentPlacesComponent implements OnInit {
 
   constructor(private router: Router, 
               private anonService: AnonService) {
-    this.getAllEntertainmentPlaces();
   }
   
-  getAllEntertainmentPlaces() {
+  getAllData() {
     this.anonService.getAllEntertainmentPlaces().subscribe(places => {
       this.entertainmentPlaces = places;
       this.entertainmentPlaces.push(new EntertainmentPlace({name: "Name3"}));
@@ -27,6 +26,7 @@ export class EntertainmentPlacesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllData();
   }
 
   onEntertainmentPlaceClick(item: EntertainmentPlace) {

@@ -1,0 +1,18 @@
+<div *ngIf="!canRender" class="spinner-box">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="canRender">
+    <div mat-dialog-content>
+        {{ reservationConfirm.entertainmentActivity }}
+        {{ reservationConfirm.entertainmentPlace }}
+        {{ reservationConfirm.reservationDate }}
+        {{ reservationConfirm.reservationHour }}
+        {{ reservationConfirm.rental }}
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="confirmReservation()">
+            {{ 'Confirm' }}
+        </button>
+        <button (click)="abordReservation()"> {{ 'Abord' }}</button>
+    </div>
+</div>

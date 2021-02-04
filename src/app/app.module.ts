@@ -48,8 +48,10 @@ import { MenuComponent } from './menu/menu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EntertainmentPlaceDetailsComponent } from './owner/entertainment-places/entertainment-place-details/entertainment-place-details.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { EntertainmentActvityComponent } from './owner/entertainment-actvity/entertainment-actvity.component';
+import { EntertainmentActivityComponent } from './owner/entertainment-activity/entertainment-activity.component';
 import { SpinnerComponent } from './commons/spinner/spinner.component';
+import { ReservationSchedulerComponent } from './renter/reservation-scheduler/reservation-scheduler.component';
+import { ReservationConfirmComponent } from './renter/reservation-confirm/reservation-confirm.component';
 
 @NgModule({
   declarations: [
@@ -64,8 +66,10 @@ import { SpinnerComponent } from './commons/spinner/spinner.component';
     EntertainmentPlacesComponent,
     MenuComponent,
     EntertainmentPlaceDetailsComponent,
-    EntertainmentActvityComponent,
-    SpinnerComponent
+    EntertainmentActivityComponent,
+    SpinnerComponent,
+    ReservationSchedulerComponent,
+    ReservationConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,7 @@ import { SpinnerComponent } from './commons/spinner/spinner.component';
     LayoutModule, 
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [ 
     LoginService, 
