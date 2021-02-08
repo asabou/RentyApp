@@ -37,11 +37,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LeftMenuComponent } from './menu/left-menu/left-menu.component';
 import { MenuListItemComponent } from './menu/menu-list-item/menu-list-item.component';
 import { ToastrModule } from 'ng6-toastr-notifications';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { EntertainmentPlaceItemComponent } from './owner/entertainment-places/entertainment-place-item/entertainment-place-item.component';
 import { EntertainmentPlacesComponent } from './owner/entertainment-places/entertainment-places.component';
 import { MenuComponent } from './menu/menu.component';
@@ -52,6 +51,14 @@ import { EntertainmentActivityComponent } from './owner/entertainment-activity/e
 import { SpinnerComponent } from './commons/spinner/spinner.component';
 import { ReservationSchedulerComponent } from './renter/reservation-scheduler/reservation-scheduler.component';
 import { ReservationConfirmComponent } from './renter/reservation-confirm/reservation-confirm.component';
+import { ReservationsComponent } from './renter/reservations/reservations.component';
+import { AbstractTableComponent } from './commons/abstract-table/abstract-table.component';
+import { EntertainmentPlaceSearchComponent } from './owner/entertainment-places/entertainment-place-search/entertainment-place-search.component';
+import { AbstractSearchComponent } from './commons/abstract-search/abstract-search.component';
+import { UserEditComponent } from './admin/users/user-edit/user-edit.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -69,7 +76,12 @@ import { ReservationConfirmComponent } from './renter/reservation-confirm/reserv
     EntertainmentActivityComponent,
     SpinnerComponent,
     ReservationSchedulerComponent,
-    ReservationConfirmComponent
+    ReservationConfirmComponent,
+    ReservationsComponent,
+    AbstractTableComponent,
+    EntertainmentPlaceSearchComponent,
+    AbstractSearchComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -99,6 +111,12 @@ import { ReservationConfirmComponent } from './renter/reservation-confirm/reserv
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FlexLayoutModule,
+    MatIconModule,
+    NoopAnimationsModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [ 
     LoginService, 
@@ -110,8 +128,7 @@ import { ReservationConfirmComponent } from './renter/reservation-confirm/reserv
     AdminGuard, 
     RenterGuard, 
     OwnerGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
-    { provide: LocationStrategy, useClass: PathLocationStrategy }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

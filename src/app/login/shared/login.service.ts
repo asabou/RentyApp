@@ -47,6 +47,7 @@ export class LoginService {
         if (headers.get(AUTHORIZATION)) {
             const token = headers.get(AUTHORIZATION).split(" ")[1];
             this.sessionObjectService.setToken(token);
+            this.sessionObjectService.setTableColumns();
         }
     }
 

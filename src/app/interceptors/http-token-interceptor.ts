@@ -38,17 +38,12 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
     private handleError(err: HttpErrorResponse): Observable<any> {
         let status = err.status;
-        if (status === 0) {
-            this.toastr.errorToastr("Server is down!", Message.ERROR).config = {
-                toastTimeout: 0,
-                showCloseButton: true
-            };
+        console.log(err);
+        if (status === 0 || status === 500) {
+            this.toastr.errorToastr("Server is down!", Message.ERROR);
             return throwError(err);
         } else {
-            this.toastr.errorToastr(err.error, Message.ERROR).config = {
-                toastTimeout: 0,
-                showCloseButton: true
-            };
+            this.toastr.errorToastr(err.error["message"], Message.ERROR); 
             return throwError(err);
         }
         return null;

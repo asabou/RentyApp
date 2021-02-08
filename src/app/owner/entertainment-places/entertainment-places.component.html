@@ -1,3 +1,4 @@
+<app-entertainment-place-search></app-entertainment-place-search>
 <div fxLayout="row wrap" fxLayoutGap="2% grid">
     <div [fxFlex]="33 + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of entertainmentPlaces">
         <app-entertainment-place-item [entertainmentPlace]="item" (click)="onEntertainmentPlaceClick(item)"></app-entertainment-place-item>

@@ -8,20 +8,18 @@ import { leftMenuNavItems } from '../nav-items';
   templateUrl: './left-menu.component.html',
   styleUrls: ['./left-menu.component.scss']
 })
-export class LeftMenuComponent extends AbstractComponent implements OnInit {
-  getAllData(): void {
-    //not important here
-  }
-  getEntityId(): number {
-     return 0; //not important here
-  }
+export class LeftMenuComponent implements OnInit {
+ 
 
   ngOnInit(): void {
   }
 
-  constructor(location: Location) {
-    super(location);
+  constructor(private location: Location) {
   }
 
   navItems = leftMenuNavItems;
+
+  back() {
+    this.location.back();
+  }
 }

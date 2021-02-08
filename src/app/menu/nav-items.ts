@@ -28,12 +28,12 @@ export const leftMenuNavItems: NavItem[] = [
         children: [
             {
                 name: 'My places',
-                route: 'my-entertainment-places', //sau all daca e admin
+                route: 'entertainment-places', 
                 icon: 'festival'
             },
             {
                 name: 'Reservations',
-                route: 'my-entertainment-places-reservations', //sau all daca e admin
+                route: 'owner-reservations', 
                 icon: 'book_online'
             }
         ]
@@ -49,7 +49,7 @@ export const leftMenuNavItems: NavItem[] = [
             },
             {
                 name: 'My reservations',
-                route: 'my-reservations',
+                route: 'renter-reservations',
                 icon: 'bookmarks'
             }
         ]

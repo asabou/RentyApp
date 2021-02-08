@@ -36,16 +36,21 @@ export class RenterService extends AbstractService {
     }
 
     cancelReservation(id: number): Observable<Object> {
-        let url = RENTER_URL + "/cancel-reservation" + id;
+        let url = RENTER_URL + "/cancel-reservation/" + id;
         return this.http.delete(url);
     }
 
-    getAllActiveReservationsByUserId(id: string): Observable<ReservationInput[]> {
-        let url = RENTER_URL + "/all-active-reservations/" + id;
+    getAllActiveReservationsFromRenter(): Observable<ReservationInput[]> {
+        let url = RENTER_URL + "/all-active-reservations";
         return this.http.get<ReservationInput[]>(url);
     }
 
-    findAllActivereservationsForActivityAndPlace(searchObj: EntertainmentActivityPlaceSearchObject): Observable<ReservationOutput[]> {
+    getAllActiveReservations(): Observable<ReservationInput[]> {
+        let url = RENTER_URL + "/get-all-active-reservations";
+        return this.http.get<ReservationInput[]>(url);
+    }
+
+    findAllActiveReservationsForActivityAndPlace(searchObj: EntertainmentActivityPlaceSearchObject): Observable<ReservationOutput[]> {
         let url = RENTER_URL + "/active-reservations-for-activity-place";
         let params = this.getHttpParamsForEntertainmentActivityPlaceSearchObject(searchObj);
         return this.http.get<ReservationOutput[]>(url, { params: params });

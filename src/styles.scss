@@ -5,3 +5,59 @@ body { margin: 0; }
     display: flex;
     justify-content: center;
 }
+
+.data-table {
+    width: 80%;
+    margin: 2% auto;
+}
+
+.search-container {
+    border-radius: 5%;
+    padding: 1%;
+    display: flex;
+    align-items: center;
+}
+
+.flex-display {
+    display: flex;
+}
+
+.input-text {
+    height: 24px;
+    border: 1px rgba(0, 0, 0, 0.3) solid;
+}
+
+.one-input {
+    width: 10%;
+}
+
+table.display-data {
+    border-collapse: separate;
+    border-spacing: 10px 2px;
+}
+
+table.display-data > tr > td {
+    text-align: right;
+}
+
+.mat-dialog-title {
+    font-size: 1.7em;
+    text-align: center;
+    color: white;
+    background-color: rgba(121, 134, 245, 0.808);
+}
+
+.dialog-action-buttons {
+    width: 100%;
+}
+
+button.button-action {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 1%;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: #949ba6;
+}

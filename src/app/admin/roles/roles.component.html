@@ -1,1 +1,10 @@
-<p>roles works!</p>
+<div *ngIf="isLoading" class="spinner-box">
+    <app-spinner [diameter]="100"></app-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <app-abstract-table
+        [tableId]="getTableId()"
+        [objectList]="roles"
+    >
+    </app-abstract-table>
+</div>

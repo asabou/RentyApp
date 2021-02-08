@@ -5,13 +5,13 @@
     <table class="table table-bordered">
         <thead>
             <th></th>
-            <th *ngFor="let row of schedulerMatrix[0]; index as i">
+            <th *ngFor="let row of schedulerMatrix[0]; index as i" [ngStyle]="{'text-align': 'center'}">
                 {{ getDateFromIndex(i) }}
             </th>
         </thead>
         <tbody>
-            <tr *ngFor="let row of schedulerMatrix; index as i">
-                <th>{{ getHourFromIndex(i) }}</th>
+            <tr *ngFor="let row of schedulerMatrix; index as i" [ngStyle]="{'text-align': 'center'}">
+                <th>{{ getHourFromIndex(i) }} </th>
                 <td *ngFor="let item of schedulerMatrix[i]; index as j" (click)="onCellClick(i,j)" [ngStyle]="{ backgroundColor: getCellColor(i,j),  'text-align': 'center'}">
                     {{ schedulerMatrix[i][j] }}
                 </td>

@@ -1,1 +1,13 @@
-<p>users works!</p>
+<div *ngIf="isLoading" class="spinner-box">
+    <app-spinner [diameter]="50"></app-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <app-abstract-table
+        [tableId]="getTableId()"
+        [objectList]="users"
+        [actions]="['delete', 'edit']"
+        (delete)="afterDelete($event)"
+        (edit)="onEditClick($event)"
+    >
+    </app-abstract-table>
+</div>

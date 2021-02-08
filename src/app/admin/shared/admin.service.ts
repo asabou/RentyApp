@@ -26,22 +26,29 @@ export class AdminService extends AbstractService {
         return this.http.post<UserDetails>(url, userDetails);
     }
 
-    deleteAccount(searchObj: UserSearchObject): Observable<Object> {
-        let url = ADMIN_URL + "/delete-account";
-        let params = this.getHttpParamsForUserSearchObject(searchObj);
-        return this.http.delete<UserSearchObject>(url, { params: params });
+    deleteAccount(id: string): Observable<Object> {
+        let url = ADMIN_URL + "/delete-account/" + id;
+        return this.http.delete(url);
     }
 
-    updateRoleForUser(searchObj: UserSearchObject, roles: Role[]): Observable<Object> {
+    updateRoleForUser(userDetails: UserDetails): Observable<Object> {
         let url = ADMIN_URL + "/update-roles-for-user";
-        let params = this.getHttpParamsForUserSearchObject(searchObj);
-        return this.http.put(url, roles, { params: params });
+        return this.http.post<UserDetails>(url, userDetails);
     }
 
-    getAllUsers(): Observable<User[]> {
-        let url = ADMIN_URL + "/all-users";
-        return this.http.get<User[]>(url);
+    getAllUsersDetails(): Observable<UserDetails[]> {
+        let url = ADMIN_URL + "/all-users-details";
+        return this.http.get<UserDetails[]>(url);
     }
     
+    getAllRoles(): Observable<Role[]> {
+        let url = ADMIN_URL + "/all-roles";
+        return this.http.get<Role[]>(url);
+    }
+
+    findUserById(id: string): Observable<UserDetails> {
+        let url = ADMIN_URL + "/user-by-id/" + id;
+        return this.http.get<UserDetails>(url);
+    }
 
 }

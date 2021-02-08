@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ServicesUtils } from "src/app/utils/services-utils.model";
 import { SessionObject } from "./session-object.model";
@@ -6,6 +7,8 @@ export const SESSION_OBJECT = "SESSION_OBJECT";
 
 @Injectable()
 export class SessionObjectService {
+
+    constructor(private http: HttpClient) { }
 
     createSessionObject() {
         if (ServicesUtils.isNullOrUndefined(localStorage.getItem(SESSION_OBJECT))) {
@@ -35,6 +38,19 @@ export class SessionObjectService {
     getToken(): string {
         let sessionObject: SessionObject = this.getSessionObject();
         return sessionObject.token;
+    }
+
+    setTableColumns(): void {
+        this.http.get("assets/columns.json", { responseType: "json" }).subscribe(tableColumns => {
+            let sessionObject: SessionObject = this.getSessionObject();
+            sessionObject.tableColumns = tableColumns;
+            this.setSessionObject(sessionObject);
+        });
+    }
+
+    getTableColumns(): Object {
+        let sessionObject: SessionObject = this.getSessionObject();
+        return sessionObject.tableColumns;
     }
 
 }

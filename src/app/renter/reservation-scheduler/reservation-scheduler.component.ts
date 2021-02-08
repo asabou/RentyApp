@@ -32,7 +32,7 @@ export class ReservationSchedulerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllData();
-    this.subs = interval(10000).subscribe(() => {
+    this.subs = interval(4000).subscribe(() => {
       this.getActiveReservationsForActivityAndPlace();
     });
   }
@@ -72,7 +72,7 @@ export class ReservationSchedulerComponent implements OnInit, OnDestroy {
 
   private getActiveReservationsForActivityAndPlace(): void {
     let searchObj: EntertainmentActivityPlaceSearchObject = this.getEntertainmentActivityPlaceSearchObjectFromUrl();
-    this.renterService.findAllActivereservationsForActivityAndPlace(searchObj).subscribe(actReservations => {
+    this.renterService.findAllActiveReservationsForActivityAndPlace(searchObj).subscribe(actReservations => {
       this.reservations = actReservations;
       this.initSchedulerMatrix();
       this.populateSchedulerMatrixWithActiveReservations();

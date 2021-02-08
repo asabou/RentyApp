@@ -1,0 +1,75 @@
+{
+    "reservationTable": {
+        "fields": [
+            {
+                "colId": "id",
+                "colName": "ReservationID"
+            },
+            {
+                "colId": "entertainmentPlaceName",
+                "colName": "Place name"
+            },
+            {
+                "colId": "entertainmentActivityName",
+                "colName": "Activity"
+            },
+            {
+                "colId": "reservationDate",
+                "colName": "Date"
+            },
+            {
+                "colId": "reservationHour",
+                "colName": "Hour"
+            }
+        ]
+    },
+    "rolesTable": {
+        "fields": [
+            {
+                "colId": "id",
+                "colName": "RoleID"
+            }, 
+            {
+                "colId": "role",
+                "colName": "Role"
+            },
+            {
+                "colId": "description",
+                "colName": "Description"
+            }
+
+        ]
+    },
+    "usersTable": {
+        "fields": [
+            {
+                "colId": "id",
+                "colName": "UserID"
+            },
+            {
+                "colId": "username",
+                "colName": "Username"
+            },
+            {
+                "colId": "roles",
+                "colName": "Roles"
+            },
+            {
+                "colId": "firstName",
+                "colName": "First name"
+            },
+            {
+                "colId": "lastName",
+                "colName": "Last name"
+            },
+            {
+                "colId": "email",
+                "colName": "Email"
+            },
+            {
+                "colId": "telNumber",
+                "colName": "Tel. number"
+            }
+        ]
+    }
+}
