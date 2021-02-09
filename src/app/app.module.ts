@@ -59,6 +59,10 @@ import { UserEditComponent } from './admin/users/user-edit/user-edit.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { UserAddComponent } from './admin/users/user-add/user-add.component';
+import { EntertainmentPlaceEditComponent } from './owner/entertainment-places/entertainment-place-edit/entertainment-place-edit.component';
+import { ImageBytesService } from './utils/image-bytes.service';
+import { EntertainmentActivityEditComponent } from './owner/entertainment-activity/entertainment-activity-edit/entertainment-activity-edit.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,10 @@ import { MatSelectModule } from '@angular/material/select';
     AbstractTableComponent,
     EntertainmentPlaceSearchComponent,
     AbstractSearchComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserAddComponent,
+    EntertainmentPlaceEditComponent,
+    EntertainmentActivityEditComponent
   ],
   imports: [
     BrowserModule,
@@ -128,6 +135,7 @@ import { MatSelectModule } from '@angular/material/select';
     AdminGuard, 
     RenterGuard, 
     OwnerGuard,
+    ImageBytesService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

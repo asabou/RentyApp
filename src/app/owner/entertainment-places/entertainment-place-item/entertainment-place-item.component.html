@@ -1,12 +1,29 @@
-<mat-card class="mat-elevation-z4">
-    <mat-card-header>
-        {{ entertainmentPlace.name }}
-    </mat-card-header>
+<mat-card class="mat-elevation-z8" style="background-color: #9bc8ee">
+    <div class="row">
+        <mat-card-header>
+            {{ entertainmentPlace.name }}
+        </mat-card-header>
+        <div style="right: 0;top: 0;position: absolute;">
+            <div>
+                <button *ngIf="hasRights" mat-button color="warn" (click)="onEntertainmentPlaceDeleteClick()" title="Delete forever"><mat-icon>delete_forever</mat-icon></button>
+                <button *ngIf="hasRights" mat-button  (click)="onEntertainmentPlaceEditClick()" title="Edit"><mat-icon>create</mat-icon></button>
+            </div>
+        </div>
+    </div>
+    <hr>
     <mat-card-content>
-        {{ entertainmentPlace.description }}
+        <div class="flex-display">
+            <img [src]="image" width="50%" height="50%">
+            <div class="margin-left-5 overflow-auto">
+                <div class="col-xs-12">
+                    {{ entertainmentPlace.description }}
+                </div>
+            </div>
+        </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>like</button>
-        <button mat-button>share</button>
+        <div style="right: 0;bottom: 0;position: absolute;">
+            <button mat-button (click)="onViewActivitiesClick()" title="See activities"><mat-icon>search</mat-icon></button>
+        </div>
     </mat-card-actions>
 </mat-card>

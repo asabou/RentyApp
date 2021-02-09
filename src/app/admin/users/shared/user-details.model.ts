@@ -7,4 +7,8 @@ export class UserDetails {
     lastName: string;
     email: string;
     telNumber: string;
+    constructor(data: any) {
+        this.user = new User(null);
+        Object.assign(this, data);
+    }
 }

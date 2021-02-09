@@ -6,6 +6,7 @@ export class User {
     password?: string;
     roles: Role[];
     constructor(data: any) {
+        this.roles = [];
         Object.assign(this, data);
     }
 }

@@ -5,7 +5,7 @@ export class EntertainmentPlace {
     id: number;
     name: string;
     description: string;
-    profileImage: Blob;
+    profileImage: any; //bytes
     userDetails: UserDetails;
     address: Address;
     

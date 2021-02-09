@@ -2,6 +2,9 @@
     <app-spinner [diameter]="50"></app-spinner>
 </div>
 <div *ngIf="!isLoading">
+    <div class="data-table">
+        <button mat-icon-button (click)="onUserAddClick()" title="Add User"><mat-icon>add_circle_outline</mat-icon></button>
+    </div>
     <app-abstract-table
         [tableId]="getTableId()"
         [objectList]="users"

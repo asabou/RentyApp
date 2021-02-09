@@ -1,70 +1,84 @@
 <div *ngIf="!canRender" class="spinner-box" mat-dialog-content>
     <app-spinner></app-spinner>
 </div>
-<div mat-dialog-title >User Edit</div>
+<div mat-dialog-title>User Add</div>
 <div *ngIf="canRender" mat-dialog-content>
     <table class="display-data">
         <tr>
+            <td><div>Username:</div></td>
             <td colspan="3">
-                <input
+                <input 
+                    type="text" 
                     class="form-control one-input input-text"
                     name="Username"
                     autocomplete="off"
                     [(ngModel)]="user.user.username"
-                    readonly
-                    placeholder="Username"
+                    required
                 />
             </td>
         </tr>
         <tr>
+            <td><div>Password:</div></td>
             <td colspan="3">
-                <input
+                <input 
+                    type="password"
                     class="form-control one-input input-text"
-                    name="FirstName"
+                    name="Password"
+                    autocomplete="off"
+                    [(ngModel)]="user.user.password"
+                    required
+                />
+            </td>
+        </tr>
+        <tr>
+            <td><div>First name:</div></td>
+            <td colspan="3">
+                <input 
+                    type="text"
+                    class="form-control one-input input-text"
                     autocomplete="off"
                     [(ngModel)]="user.firstName"
                     required
-                    placeholder="First name"
                 />
             </td>
         </tr>
         <tr>
+            <td><div>Last name:</div></td>
             <td colspan="3">
-                <input
+                <input 
+                    type="text"
                     class="form-control one-input input-text"
-                    name="LastName"
                     autocomplete="off"
                     [(ngModel)]="user.lastName"
                     required
-                    placeholder="Last name"
                 />
             </td>
         </tr>
         <tr>
+            <td><div>Email:</div></td>
             <td colspan="3">
-                <input
+                <input 
+                    type="text"
                     class="form-control one-input input-text"
-                    name="Email"
                     autocomplete="off"
                     [(ngModel)]="user.email"
-                    placeholder="Email"
                     required
                 />
             </td>
         </tr>
         <tr>
+            <td><div>TelNumber:</div></td>
             <td colspan="3">
-                <input
+                <input 
+                    type="tel"
                     class="form-control one-input input-text"
-                    name="TelNumber"
                     autocomplete="off"
                     [(ngModel)]="user.telNumber"
                     required
-                    placeholder="Tel number"
                 />
             </td>
         </tr>
-        <tr>
+        <tr *ngIf="hasAdminRights">
             <td><div>Roles:</div></td>
             <td colspan="3">
                 <mat-form-field>
@@ -82,6 +96,7 @@
                             matInput
                             [matAutocomplete]="auto"
                             [matChipInputFor]="assignedRoles"
+                            required
                         />
                         <mat-autocomplete
                         autoActiveFirstOption
@@ -98,6 +113,7 @@
                 </mat-form-field>
             </td>
         </tr>
+
     </table>
 </div>
 <div mat-dialog-actions>

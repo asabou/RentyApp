@@ -7,7 +7,6 @@ import { Message } from 'src/app/utils/message.model';
 import { Role } from '../../roles/shared/role.model';
 import { AdminService } from '../../shared/admin.service';
 import { UserDetails } from '../shared/user-details.model';
-import { UserSearchObject } from '../shared/user-search.model';
 
 @Component({
   selector: 'app-user-edit',

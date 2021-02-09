@@ -43,7 +43,11 @@ export class EntertainmentPlacesComponent extends AbstractSearchComponent implem
     this.getAllData();
   }
 
-  onEntertainmentPlaceClick(item: EntertainmentPlace) {
-    this.router.navigate(['entertainment-place-details', item.id]);
+  onEntertainmentPlaceDelete(data: any) {
+    this.getAllData();
+  }
+
+  onEntertainmentPlaceEdit(data: any) {
+    this.getAllData();
   }
 }

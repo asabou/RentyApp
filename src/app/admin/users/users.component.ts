@@ -1,6 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AbstractComponent } from 'src/app/commons/abstract.component';
 import { DialogUtils } from 'src/app/utils/dialog-utils.model';
@@ -8,6 +7,7 @@ import { Message } from 'src/app/utils/message.model';
 import { AdminService } from '../shared/admin.service';
 import { UserDetailsFull } from './shared/user-details-full.model';
 import { UserDetails } from './shared/user-details.model';
+import { UserAddComponent } from './user-add/user-add.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
 @Component({
@@ -19,6 +19,7 @@ export class UsersComponent extends AbstractComponent implements OnInit {
   isLoading: boolean;
   users: UserDetailsFull[] = [];
   userEditRef: MatDialogRef<UserEditComponent>;
+  userAddRef: MatDialogRef<UserAddComponent>;
 
   constructor(private adminService: AdminService,
     private matDialog: MatDialog,
@@ -50,7 +51,7 @@ export class UsersComponent extends AbstractComponent implements OnInit {
   }
 
   private openUserEditDialog(id: string): void {
-    let dialogConfig = DialogUtils.createDefaultPanelDialogConfig(900);
+    let dialogConfig = DialogUtils.createDefaultPanelDialogConfig(295);
     dialogConfig.data = id;
     this.userEditRef = this.matDialog.open(
       UserEditComponent,
@@ -91,4 +92,19 @@ export class UsersComponent extends AbstractComponent implements OnInit {
     return user;
   }
 
+  onUserAddClick(): void {
+    this.opendAddUserDialog();
+  }
+
+  private opendAddUserDialog(): void {
+    let dialogConfig = DialogUtils.createDefaultPanelDialogConfig(400);
+    this.userAddRef = this.matDialog.open(
+      UserAddComponent,
+      dialogConfig
+    );
+    this.userAddRef.afterClosed().subscribe(data => {
+      this.userAddRef = null;
+      this.getAllUsersDetails();
+    });
+  }
 }

@@ -7,4 +7,5 @@ export class Message {
     public static ROLES_UPDATED_SUCCESSFULLY = "Roles update succesfully!";
     public static USER_DELETED_SUCCESSFULLY = "User delete succesfully!";
     public static ENTITY_UPDATED_SUCCESSFULLY = "Entity updated successfully!";
+    public static ENT_PLACE_DELETED_SUCCESFULLY = "Enterrtainment place deleted succesfully!";
 }
