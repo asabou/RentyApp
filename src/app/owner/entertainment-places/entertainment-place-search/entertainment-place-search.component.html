@@ -1,5 +1,56 @@
-<!-- <div class="container border border-secondary col-lg-6 search-container">
-    <button (click)="onExpandButtonClick()" mat-button>
-        <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">expand_more</mat-icon>
-    </button>
-</div> -->
+<div class="col-xs-12 search-container ">
+    <mat-expansion-panel hideToggle style="background-color: rgb(133, 174, 250);">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <table class="display-data">
+                <tr>
+                    <td><div>Search for entertainment place</div></td>
+                    <td><button mat-button><mat-icon>search</mat-icon></button></td>
+                </tr>
+            </table>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="flex-display">
+            <table class="display-data">
+                <tr>
+                    <td><div>Name:</div></td>
+                    <td colspan="3">
+                        <input 
+                            type="text"
+                            class="form-control one-input input-text"
+                            name="Name"
+                            [(ngModel)]="searchObj.name"
+                            autocomplete="off"
+                            placeholder="Place name"
+                            (ngModelChange)="onChange()"
+                            style="background-color: #dee0e4;"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Activity:</div></td>
+                    <td colspan="3" style="text-align: left;">
+                        <select 
+                            [(ngModel)]="searchObj.activity"
+                            class="combo form-control one-input input-text"
+                            name="Activity"
+                            (change)="onChange()"
+                            style="background-color: #dee0e4;"
+                        >
+                            <option
+                                [ngValue]="act.name" *ngFor="let act of activities"    
+                            >   
+                                {{ act.name }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <div class="container">
+                <div class="col-xs-12">
+                    Pentru a putea sa inchiriezi un teren pentru activitatea aleasa trebuie sa iti faci un cont.
+                </div>
+            </div>
+        </div>
+      </mat-expansion-panel>
+</div>

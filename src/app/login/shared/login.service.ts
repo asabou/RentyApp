@@ -56,15 +56,21 @@ export class LoginService {
     }
 
     getUsernameFromToken(): string {
-        let token = this.sessionObjectService.getToken();
-        let decodedToken = this.decodeToken(token);
-        return decodedToken["sub"].toString();
+        if (!this.isTokenExpired()) {
+            let token = this.sessionObjectService.getToken();
+            let decodedToken = this.decodeToken(token);
+            return decodedToken["sub"].toString();
+        }
+        return "";
     }
 
     getUserIdFromToken() {
-        let token = this.sessionObjectService.getToken();
-        let tokenDecoded = this.decodeToken(token);
-        return tokenDecoded["userId"];
+        if (!this.isTokenExpired()) {
+            let token = this.sessionObjectService.getToken();
+            let tokenDecoded = this.decodeToken(token);
+            return tokenDecoded["userId"];
+        } 
+        return "";
     }
 
     isRoleInRoles(rol: string) {

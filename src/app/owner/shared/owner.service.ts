@@ -5,7 +5,6 @@ import { SERVER_URL } from "src/app/app.component";
 import { AbstractService } from "src/app/commons/abstract-service.model";
 import { ReservationInput } from "src/app/renter/reservation-scheduler/shared/reservation-input.model";
 import { EntertainmentActivityOutput } from "../entertainment-activity/entertainment-activity-edit/shared/entertainment-activity-output.model";
-import { EntertainmentActivityInput } from "../entertainment-activity/shared/entertainment-activity-input.model";
 import { EntertainmentPlaceOutput } from "./entertainment-place-output.model";
 import { EntertainmentPlace } from "./entertainment-place.model";
 

@@ -54,7 +54,6 @@ import { ReservationConfirmComponent } from './renter/reservation-confirm/reserv
 import { ReservationsComponent } from './renter/reservations/reservations.component';
 import { AbstractTableComponent } from './commons/abstract-table/abstract-table.component';
 import { EntertainmentPlaceSearchComponent } from './owner/entertainment-places/entertainment-place-search/entertainment-place-search.component';
-import { AbstractSearchComponent } from './commons/abstract-search/abstract-search.component';
 import { UserEditComponent } from './admin/users/user-edit/user-edit.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -84,7 +83,6 @@ import { EntertainmentActivityEditComponent } from './owner/entertainment-activi
     ReservationsComponent,
     AbstractTableComponent,
     EntertainmentPlaceSearchComponent,
-    AbstractSearchComponent,
     UserEditComponent,
     UserAddComponent,
     EntertainmentPlaceEditComponent,

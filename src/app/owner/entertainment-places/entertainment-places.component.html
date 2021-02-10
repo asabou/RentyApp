@@ -1,5 +1,17 @@
-<app-entertainment-place-search></app-entertainment-place-search>
-<div fxLayout="row wrap" fxLayoutGap="2% grid">
+<app-entertainment-place-search 
+    (searchStart)="onSearchStart($event)"
+    (searchEnded)="onSearchEnded($event)"
+    >
+</app-entertainment-place-search>
+<div *ngIf="!canRender" class="spinner-box">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="canRender && entertainmentPlaces.length === 0">
+    <div class="col-xs-12" style="color: red;">
+        Nu s-a gasit niciun loc care sa satisfaca cerintele!
+    </div>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="2% grid" *ngIf="canRender">
     <div [fxFlex]="33 + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of entertainmentPlaces">
         <app-entertainment-place-item 
             [entertainmentPlace]="item" 

@@ -11,13 +11,6 @@ body { margin: 0; }
     margin: 2% auto;
 }
 
-.search-container {
-    border-radius: 5%;
-    padding: 1%;
-    display: flex;
-    align-items: center;
-}
-
 .flex-display {
     display: flex;
 }
@@ -101,4 +94,20 @@ mat-card-header {
 
 .overflow-auto {
     overflow: auto;
+}
+
+.confirm-dialog-bolded {
+    font-size: 0.9em;
+    font-weight: 900;
+}
+
+.search-container {
+    border-radius: 8px;
+    border: 2px ridge rgba(51, 50, 50, 0.5) !important;
+    margin-bottom: 2%;
+}
+
+.combo {
+    height: 24px;
+    border-radius: 5px;
 }

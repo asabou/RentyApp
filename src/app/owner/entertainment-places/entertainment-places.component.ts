@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AnonService } from 'src/app/anon/shared/anon.service';
-import { AbstractSearchComponent } from 'src/app/commons/abstract-search/abstract-search.component';
 import { LoginService } from 'src/app/login/shared/login.service';
 import { EntertainmentPlace } from '../shared/entertainment-place.model';
 import { OwnerService } from '../shared/owner.service';
@@ -11,15 +9,13 @@ import { OwnerService } from '../shared/owner.service';
   templateUrl: './entertainment-places.component.html',
   styleUrls: ['./entertainment-places.component.scss']
 })
-export class EntertainmentPlacesComponent extends AbstractSearchComponent implements OnInit {
+export class EntertainmentPlacesComponent implements OnInit {
   entertainmentPlaces: EntertainmentPlace[] = [];
+  canRender = false;
 
-  constructor(private router: Router,
-    	        private loginService: LoginService, 
+  constructor(private loginService: LoginService, 
               private anonService: AnonService, 
-              private ownerService: OwnerService) {
-                super();
-  }
+              private ownerService: OwnerService) { }
   
   getAllData() {
     let adminRights = this.loginService.hasAdminRights();
@@ -28,12 +24,14 @@ export class EntertainmentPlacesComponent extends AbstractSearchComponent implem
     if ((adminRights || renterRights) || (!adminRights && !ownerRights && !renterRights)) {
       this.anonService.getAllEntertainmentPlaces().subscribe(places => {
         this.entertainmentPlaces = places;
+        this.canRender = true;
       });
       return;
     }
     if (ownerRights && !adminRights) {
       this.ownerService.findAllOwnedEntertainmentPlaces().subscribe(place => {
         this.entertainmentPlaces = place;
+        this.canRender = true;
       });
       return;
     }
@@ -49,5 +47,14 @@ export class EntertainmentPlacesComponent extends AbstractSearchComponent implem
 
   onEntertainmentPlaceEdit(data: any) {
     this.getAllData();
+  }
+
+  onSearchStart(data: any) {
+    this.canRender = false;
+  }
+
+  onSearchEnded(entPlaces: EntertainmentPlace[]) {
+    this.entertainmentPlaces = entPlaces;
+    this.canRender = true;
   }
 }

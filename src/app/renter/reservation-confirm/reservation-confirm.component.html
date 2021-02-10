@@ -1,18 +1,33 @@
 <div *ngIf="!canRender" class="spinner-box">
     <app-spinner></app-spinner>
 </div>
-<div *ngIf="canRender">
-    <div mat-dialog-content>
-        {{ reservationConfirm.entertainmentActivity }}
-        {{ reservationConfirm.entertainmentPlace }}
-        {{ reservationConfirm.reservationDate }}
-        {{ reservationConfirm.reservationHour }}
-        {{ reservationConfirm.rental }}
-    </div>
-    <div mat-dialog-actions>
-        <button (click)="confirmReservation()">
-            {{ 'Confirm' }}
-        </button>
-        <button (click)="abordReservation()"> {{ 'Abord' }}</button>
+<div *ngIf="canRender" mat-dialog-content>
+    <table class="display-data confirm-dialog-bolded">
+        <tr>
+            <td><div>Activity:</div></td>
+            <td colspan="3"><div>{{ reservationConfirm.entertainmentActivity }}</div></td>
+        </tr>
+        <tr>
+            <td><div>Place:</div></td>
+            <td colspan="3"><div>{{ reservationConfirm.entertainmentPlace }}</div></td>
+        </tr>
+        <tr>
+            <td><div>Appointment date:</div></td>
+            <td colspan="3"><div>{{ reservationConfirm.reservationDate }}</div></td>
+        </tr>
+        <tr>
+            <td><div>Appointment hour:</div></td>
+            <td colspan="3"><div>{{ reservationConfirm.reservationHour }}</div></td>
+        </tr>
+        <tr>
+            <td><div>Rental user:</div></td>
+            <td colspan="3"><div> {{ reservationConfirm.rental }}</div></td>
+        </tr>
+    </table>
+</div>
+<div mat-dialog-actions>
+    <div class="flex-display">
+        <button mat-button class="btn btn-light button-action" (click)="confirmReservation()">Confirm</button>
+        <button mat-button class="btn btn-light button-action" (click)="abordReservation()">Abord</button>
     </div>
 </div>

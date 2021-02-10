@@ -28,4 +28,12 @@ export class ServicesUtils {
         return +data;
     }
 
+    static isStringNullOrEmpty(str: string) {
+        return str === null || str === "";
+    }
+
+    static isNullOrUndefinedOrEmpty(obj: any) {
+        return this.isNullOrUndefined(obj) && this.isStringNullOrEmpty(obj);
+    }
+
 }
