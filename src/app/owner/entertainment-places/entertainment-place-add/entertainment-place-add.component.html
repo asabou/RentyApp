@@ -1,0 +1,168 @@
+<div *ngIf="!canRender" class="spinner-box">
+    <app-spinner></app-spinner>
+</div>
+<div class="col-xs-12 search-container" *ngIf="canRender">  
+    <mat-expansion-panel hideToggle style="background-color: rgb(133, 174, 250);">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <table class="display-data">
+                <tr>
+                    <td><div>Create entertainment place</div></td>
+                    <td><button mat-button><mat-icon>add</mat-icon></button></td>
+                </tr>
+            </table>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="flex-display">
+            <table class="display-data">
+                <tr>
+                    <td><div>Name:</div></td>
+                    <td colspan="3">
+                        <input 
+                            type="text"
+                            class="form-control one-input input-text"
+                            name="Name"
+                            [(ngModel)]="entertainmentPlace.name"
+                            autocomplete="off"
+                            placeholder="Place name"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                    <td rowspan="8">
+                        <img [src]="image" width="100%"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Activity:</div></td>
+                    <td colspan="3" style="text-align: left;">
+                        <select 
+                            [(ngModel)]="entertainmentPlace.entertainmentActivity"
+                            class="combo form-control one-input input-text"
+                            name="Activity"
+                            style="background-color: #dee0e4;"
+                            required
+                            title="You can add more activities later"
+                        >
+                            <option
+                                [ngValue]="act.name" *ngFor="let act of activities"    
+                            >   
+                                {{ act.name }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Price per hour:</div></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="Price"
+                            [(ngModel)]="entertainmentPlace.pricePerHour"
+                            autocomplete="off"
+                            placeholder="Price"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Max people allowed:</div></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentPlace.maxPeopleAllowed"
+                            autocomplete="off"
+                            placeholder="No. people"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Address:</div></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentPlace.address.county"
+                            autocomplete="off"
+                            placeholder="County"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentPlace.address.city"
+                            autocomplete="off"
+                            placeholder="City"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentPlace.address.street"
+                            autocomplete="off"
+                            placeholder="Street"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentPlace.address.number"
+                            autocomplete="off"
+                            placeholder="Number"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Description:</div></td>
+                    <td colspan="3">
+                        <textarea 
+                            name="Description" cols="3" rows="3"
+                            class="form-control one-input input-text"
+                            placeholder="Description of the place"
+                            style="background-color: #dee0e4;"
+                            required
+                            [(ngModel)]="entertainmentPlace.description"
+                            >
+
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Profile image:</div></td>
+                    <td colspan="3">
+                        <input #file type="file" (change)="onImageSelected(file.files)" accept="image/jpeg" title="Change image profile" required>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="flex-display">
+            <button class="btn btn-light button-action padding-2" (click)="onCancel()">Cancel</button>
+            <button class="btn btn-light button-action padding-2" (click)="onSaveEntertainmentPlaceClick()">Save</button>
+        </div>
+      </mat-expansion-panel>
+</div>

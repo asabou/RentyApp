@@ -90,4 +90,9 @@ export class UserEditComponent implements OnInit {
       this.toastr.infoToastr(Message.ENTITY_UPDATED_SUCCESSFULLY, Message.INFORMATION);
     });
   }
+
+  isSaveDisabled(): boolean {
+    return (!this.user.user.username || !this.user.user.roles || 
+      !this.user.firstName || !this.user.lastName || !this.user.email || !this.user.telNumber);
+  }
 }

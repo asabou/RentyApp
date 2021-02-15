@@ -1,15 +1,111 @@
-<input 
-    id="username"
-    placeholder="Username..."
-    [(ngModel)]="appUser.username"
-    type="text"
->
-
-<input 
-    id="password"
-    placeholder="Password"
-    [(ngModel)]="appUser.password"
-    type="password"
->
-<button (click)="login()">Login</button>
-<button (click)="logout()">Logout</button>
+<div style="text-align: -webkit-center;">
+    <mat-card style="max-width: 70%;">
+      <mat-card-header>
+        <mat-card-title>Login/Register</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="Login">
+            <mat-form-field style="width: 100%;">
+              <mat-label>Username</mat-label>
+              <input 
+                type="text" 
+                matInput 
+                placeholder="Username"
+                required
+                autocomplete="off"
+                [(ngModel)]="appUser.username">
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+  
+            <mat-form-field style="width: 100%;">
+              <mat-label>Password</mat-label>
+              <input 
+                type="password" 
+                matInput 
+                required
+                autocomplete="off"
+                placeholder="Password" 
+                [(ngModel)]="appUser.password">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <button mat-button color="primary" (click)="login()" [disabled]="isLoginButtonDisabled()">Login</button>
+          </mat-tab>
+          <mat-tab label="Register">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Username</mat-label>
+                <input 
+                  type="text" 
+                  matInput 
+                  placeholder="Username"
+                  required 
+                  autocomplete="off"
+                  [(ngModel)]="user.user.username">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Password</mat-label>
+                <input 
+                  type="password" 
+                  matInput
+                  required
+                  autocomplete="off"
+                  placeholder="Password" 
+                  [(ngModel)]="user.user.password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>First name</mat-label>
+                <input 
+                  type="text" 
+                  matInput
+                  required
+                  autocomplete="off"
+                  placeholder="First name" 
+                  [(ngModel)]="user.firstName">
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Last name</mat-label>
+                <input 
+                  type="text" 
+                  matInput
+                  required
+                  autocomplete="off"
+                  placeholder="Last name" 
+                  [(ngModel)]="user.lastName">
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+              <mat-label>Email</mat-label>
+              <input 
+                type="email" 
+                matInput 
+                placeholder="Email"
+                required
+                autocomplete="off"
+                [(ngModel)]="user.email">
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Tel. Number</mat-label>
+                <input 
+                  type="text" 
+                  matInput 
+                  placeholder="Tel number"
+                  required
+                  autocomplete="off"
+                  [(ngModel)]="user.telNumber">
+                <mat-icon matSuffix>local_phone</mat-icon>
+            </mat-form-field>
+            <label>Register as: </label>
+            <div class="display-block">
+                <input type="radio" value="renter" checked [(ngModel)]="registerAs"> Renter
+                <input type="radio" value="owner" [(ngModel)]="registerAs"> Owner
+            </div>
+            <button mat-button color="primary" (click)="register()" [disabled]="isRegisterButtonDisabled()">Register</button>
+          </mat-tab>
+        </mat-tab-group>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  </div>

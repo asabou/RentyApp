@@ -41,4 +41,9 @@ export class AnonService extends AbstractService {
         let params = this.getHttpParamsFromPlaceSearchObj(searchObj);
         return this.http.get<EntertainmentPlace[]>(url, { params: params });
     }
+
+    createOwnerAccount(userDetails: UserDetails): Observable<Object> {
+        let url = ANON_URL + "/create-user-owner";
+        return this.http.post<UserDetails>(url, userDetails);
+    }
 }

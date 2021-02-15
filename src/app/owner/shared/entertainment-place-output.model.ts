@@ -4,9 +4,23 @@ export class EntertainmentPlaceOutput {
     userDetailsId: number;
     name: string;
     description: string;
-    profileImage: Blob;
+    profileImage: any;
     address: Address;
-    entertainmentActivities: string[];
+    entertainmentActivity: string;
     pricePerHour: number;
     maxPeopleAllowed: number;
+
+    constructor() {
+        this.address = new Address();
+        this.clearFields();
+    }
+
+    clearFields(): void {
+        this.name = "";
+        this.description = "";
+        this.profileImage = "";
+        this.pricePerHour = 0;
+        this.maxPeopleAllowed = 0;
+        this.address.clearFields();
+    }
 }

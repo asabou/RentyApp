@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { LoginService } from 'src/app/login/shared/login.service';
 import { RenterService } from 'src/app/renter/shared/renter.service';
 import { Constants } from 'src/app/utils/constants.model';
 import { EntertainmentActivityInput } from '../../entertainment-activity/shared/entertainment-activity-input.model';
@@ -16,8 +17,12 @@ export class EntertainmentPlaceDetailsComponent implements OnInit {
   canRender = false;
   entertainmentPlace: EntertainmentPlace;
   entertainmentActivities: EntertainmentActivityInput[];
+  hasRights = false;
 
-  constructor(private activeRoute: ActivatedRoute, private renterService: RenterService) { 
+  constructor(
+    private activeRoute: ActivatedRoute, 
+    private renterService: RenterService,
+    private loginService: LoginService) { 
   }
 
   getAllData(): void {
@@ -27,6 +32,7 @@ export class EntertainmentPlaceDetailsComponent implements OnInit {
       this.entertainmentActivities = entActivities;
       this.canRender = true;
     });
+    this.hasRights = this.loginService.hasOwnerRights() && !this.loginService.hasAdminRights();
   }
 
   getEntityId(): string {

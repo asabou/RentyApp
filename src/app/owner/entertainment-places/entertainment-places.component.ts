@@ -12,6 +12,7 @@ import { OwnerService } from '../shared/owner.service';
 export class EntertainmentPlacesComponent implements OnInit {
   entertainmentPlaces: EntertainmentPlace[] = [];
   canRender = false;
+  hasRights = false;
 
   constructor(private loginService: LoginService, 
               private anonService: AnonService, 
@@ -21,6 +22,7 @@ export class EntertainmentPlacesComponent implements OnInit {
     let adminRights = this.loginService.hasAdminRights();
     let ownerRights = this.loginService.hasOwnerRights();
     let renterRights = this.loginService.hasRenterRights();
+    this.hasRights = ownerRights && !adminRights;
     if ((adminRights || renterRights) || (!adminRights && !ownerRights && !renterRights)) {
       this.anonService.getAllEntertainmentPlaces().subscribe(places => {
         this.entertainmentPlaces = places;

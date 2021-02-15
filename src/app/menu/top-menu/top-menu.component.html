@@ -2,7 +2,11 @@
     <mat-icon [routerLink]="['/']">home</mat-icon>
     <div>Renty</div>
     <div>
-        <mat-icon [routerLink]="['/login']">login</mat-icon>
-        <mat-icon (click)="logout()">logout</mat-icon>
+        <button mat-icon-button>
+            <mat-icon [routerLink]="['/login']" title="Login">login</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon (click)="logout()" title="Logout">logout</mat-icon>
+        </button>
     </div>
 </mat-toolbar>

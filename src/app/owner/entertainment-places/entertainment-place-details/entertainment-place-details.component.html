@@ -1,8 +1,14 @@
 <div *ngIf="!canRender" class="spinner-box">
     <app-spinner></app-spinner>
 </div>
+
 <div *ngIf="canRender">
     <h3> {{ entertainmentPlace.name }} </h3>
+    <app-entertainment-activity-add *ngIf="hasRights"
+        (afterAdd)="getAllData()"
+        [entertainmentPlace]="entertainmentPlace"
+    >
+    </app-entertainment-activity-add>   
     <div fxLayout="row" fxLayoutGap="2% grid">
         <div [fxFlex]="25 + '%'" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of entertainmentActivities">
             <app-entertainment-activity [entertainmentActivity]="item" (afterUpdate)="afterUpdate($event)"></app-entertainment-activity>

@@ -33,6 +33,13 @@ export class HttpTokenInterceptor implements HttpInterceptor {
                 })
             )
         }
+        if (url.includes(SERVER_URL + "/anon")) {
+           return next.handle(req).pipe(
+               catchError((error, caught) => {
+                   return this.handleError(error);
+               })
+           );
+        }
         return next.handle(req);
     }
 
@@ -43,11 +50,11 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             return throwError(err);
         }
         if (status === 401 || status == 403) {
-            this.toastr.errorToastr(err.error, Message.ERROR);
+            this.toastr.errorToastr(err.error["message"], Message.ERROR);
             return throwError(err);
         }
         if (status === 400) {
-            this.toastr.warningToastr(err.error, Message.WARNING);
+            this.toastr.warningToastr(err.error["message"], Message.WARNING);
             return throwError(err);
         }
         return null;

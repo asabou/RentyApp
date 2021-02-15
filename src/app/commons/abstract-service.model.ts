@@ -38,16 +38,11 @@ export class AbstractService {
 
     public getHttpParamsFromPlaceSearchObj(searchObj: PlaceSearchObj): HttpParams {
         let params = new HttpParams();
-        if (!ServicesUtils.isNullOrUndefinedOrEmpty(searchObj.name)) {
+        if (!!searchObj.name) {
             params = params.append("name", searchObj.name);
-        } else {
-            params = params.append("name", null);
         }
-
-        if (!ServicesUtils.isNullOrUndefinedOrEmpty(searchObj.activity)) {
+        if (!!searchObj.activity) {
             params = params.append("activity", searchObj.activity);
-        } else {
-            params = params.append("actvity", null);
         }
         return params;
     }

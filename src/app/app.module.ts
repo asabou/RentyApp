@@ -62,6 +62,10 @@ import { UserAddComponent } from './admin/users/user-add/user-add.component';
 import { EntertainmentPlaceEditComponent } from './owner/entertainment-places/entertainment-place-edit/entertainment-place-edit.component';
 import { ImageBytesService } from './utils/image-bytes.service';
 import { EntertainmentActivityEditComponent } from './owner/entertainment-activity/entertainment-activity-edit/entertainment-activity-edit.component';
+import { EntertainmentPlaceAddComponent } from './owner/entertainment-places/entertainment-place-add/entertainment-place-add.component';
+import { QuestionMarkInfoComponent } from './commons/question-mark-info/question-mark-info.component';
+import { EntertainmentActivityAddComponent } from './owner/entertainment-activity/entertainment-activity-add/entertainment-activity-add.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -86,7 +90,10 @@ import { EntertainmentActivityEditComponent } from './owner/entertainment-activi
     UserEditComponent,
     UserAddComponent,
     EntertainmentPlaceEditComponent,
-    EntertainmentActivityEditComponent
+    EntertainmentActivityEditComponent,
+    EntertainmentPlaceAddComponent,
+    QuestionMarkInfoComponent,
+    EntertainmentActivityAddComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +128,8 @@ import { EntertainmentActivityEditComponent } from './owner/entertainment-activi
     MatExpansionModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [ 
     LoginService, 

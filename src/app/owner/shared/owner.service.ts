@@ -1,10 +1,11 @@
-import { HttpClient } from "@angular/common/http";
+    import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { SERVER_URL } from "src/app/app.component";
 import { AbstractService } from "src/app/commons/abstract-service.model";
 import { ReservationInput } from "src/app/renter/reservation-scheduler/shared/reservation-input.model";
 import { EntertainmentActivityOutput } from "../entertainment-activity/entertainment-activity-edit/shared/entertainment-activity-output.model";
+import { EntertainmentActivity } from "../entertainment-activity/shared/entertainment-activity.model";
 import { EntertainmentPlaceOutput } from "./entertainment-place-output.model";
 import { EntertainmentPlace } from "./entertainment-place.model";
 
@@ -53,6 +54,11 @@ export class OwnerService extends AbstractService {
 
     deleteEntertainmentActivityFromPlace(entAct: EntertainmentActivityOutput): Observable<Object> {
         let url = OWNER_URL + "/delete-entertainment-activity-from-place";
+        return this.http.post<EntertainmentActivityOutput>(url, entAct);
+    }
+
+    createEntertainmentActivityForPlace(entAct: EntertainmentActivityOutput): Observable<Object> {
+        let url = OWNER_URL + "/create-entertainment-activity-for-place";
         return this.http.post<EntertainmentActivityOutput>(url, entAct);
     }
 }

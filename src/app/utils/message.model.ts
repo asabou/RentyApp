@@ -8,4 +8,5 @@ export class Message {
     public static USER_DELETED_SUCCESSFULLY = "User delete succesfully!";
     public static ENTITY_UPDATED_SUCCESSFULLY = "Entity updated successfully!";
     public static ENT_PLACE_DELETED_SUCCESFULLY = "Enterrtainment place deleted succesfully!";
+    public static REGISTER_SUCCESSFULLY = "Account created successfully! Now login to the app!";
 }

@@ -119,6 +119,6 @@
 <div mat-dialog-actions>
     <div class="flex-display">
         <button mat-button class="btn btn-light button-action" (click)="onCancelModifications()">Cancel</button>
-        <button mat-button class="btn btn-light button-action" (click)="onSaveModifications()">Save</button>
+        <button mat-button class="btn btn-light button-action" (click)="onSaveModifications()" [disabled]="isSaveDisabled()">Save</button>
     </div>
 </div>

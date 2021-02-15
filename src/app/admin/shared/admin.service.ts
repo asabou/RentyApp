@@ -1,12 +1,11 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { ANON_URL } from "src/app/anon/shared/anon.service";
 import { SERVER_URL } from "src/app/app.component";
 import { AbstractService } from "src/app/commons/abstract-service.model";
 import { Role } from "../roles/shared/role.model";
 import { UserDetails } from "../users/shared/user-details.model";
-import { UserSearchObject } from "../users/shared/user-search.model";
-import { User } from "../users/shared/user.model";
 
 export const ADMIN_URL = SERVER_URL + "/admin"
 
@@ -18,11 +17,6 @@ export class AdminService extends AbstractService {
     
     createAdminAccount(userDetails: UserDetails): Observable<Object> {
         let url = ADMIN_URL + "/create-user-admin";
-        return this.http.post<UserDetails>(url, userDetails);
-    }
-
-    createOwnerAccount(userDetails: UserDetails): Observable<Object> {
-        let url = ADMIN_URL + "/create-user-owner";
         return this.http.post<UserDetails>(url, userDetails);
     }
 

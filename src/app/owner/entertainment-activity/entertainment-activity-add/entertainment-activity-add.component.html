@@ -1,0 +1,69 @@
+<div class="col-xs-12 search-container">
+    <mat-expansion-panel hideToggle style="background-color: rgb(133, 174, 250);">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <table class="display-data">
+                <tr>
+                    <td><div>Add entertainment activity for place {{ entertainmentPlace.name }}</div></td>
+                    <td><button mat-button><mat-icon>add</mat-icon></button></td>
+                </tr>
+            </table>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="flex-display">
+            <table class="display-data">
+                <tr>
+                    <td><div>Activity:</div></td>
+                    <td colspan="3" style="text-align: left;">
+                        <select 
+                            [(ngModel)]="entertainmentActivity.entertainmentActivityId"
+                            class="combo form-control one-input input-text"
+                            name="Activity"
+                            style="background-color: #dee0e4;"
+                            required
+                            title="You can add more activities later"
+                        >
+                            <option
+                                [ngValue]="act.id" *ngFor="let act of activities"    
+                            >   
+                                {{ act.name }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Price per hour:</div></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="Price"
+                            [(ngModel)]="entertainmentActivity.price"
+                            autocomplete="off"
+                            placeholder="Price"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>Max people allowed:</div></td>
+                    <td colspan="3">
+                        <input type="text"
+                            class="form-control one-input input-text"
+                            name="NoPeople"
+                            [(ngModel)]="entertainmentActivity.maxPeopleAllowed"
+                            autocomplete="off"
+                            placeholder="No. people"
+                            style="background-color: #dee0e4;"
+                            required
+                        >
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="flex-display">
+            <button class="btn btn-light button-action padding-2" (click)="onCancel()">Cancel</button>
+            <button class="btn btn-light button-action padding-2" (click)="onSaveEntertainmentActivityClick()">Save</button>
+        </div>
+      </mat-expansion-panel>
+</div>

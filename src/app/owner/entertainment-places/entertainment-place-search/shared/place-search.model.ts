@@ -1,4 +1,4 @@
 export class PlaceSearchObj {
-    name: string;
-    activity: string;
+    name?: string;
+    activity?: string;
 }

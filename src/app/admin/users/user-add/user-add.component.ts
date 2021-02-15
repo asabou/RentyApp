@@ -103,7 +103,7 @@ export class UserAddComponent implements OnInit {
       return;
     }
     if (this.roleIsContained("OWNER")) {
-      this.adminService.createOwnerAccount(this.user).subscribe(data => {
+      this.anonService.createOwnerAccount(this.user).subscribe(data => {
         this.toastr.infoToastr(Message.ENTITY_UPDATED_SUCCESSFULLY, Message.INFORMATION);
         this.dialogRef.close();
       });
@@ -115,6 +115,11 @@ export class UserAddComponent implements OnInit {
     } else {
       this.createRenterUser();
     }
+  }
+
+  isSaveDisabled(): boolean {
+    return (!this.user.user.username || !this.user.user.password || !this.user.user.roles || 
+      !this.user.firstName || !this.user.lastName || !this.user.email || !this.user.telNumber);
   }
 
 }
