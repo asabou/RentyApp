@@ -7,11 +7,13 @@ import { SessionObjectService } from "../login/shared/session-object.service";
 import { ToastrManager } from "ng6-toastr-notifications";
 import { Message } from "../utils/message.model";
 import { SERVER_URL } from "../app.component";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
     constructor(private sessionObjectService: SessionObjectService,
-        private toastr: ToastrManager) {}
+        private toastr: ToastrManager,
+        private router: Router) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let url: string = req.url;
         if (!url.includes(SERVER_URL + "/anon")) {
@@ -50,11 +52,19 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             return throwError(err);
         }
         if (status === 401 || status == 403) {
-            this.toastr.errorToastr(err.error["message"], Message.ERROR);
+            if (err.error["message"]) {
+                this.toastr.errorToastr(err.error["message"], Message.ERROR);
+            }
+            this.toastr.errorToastr(err.error, Message.ERROR);
+            this.router.navigate([""]);
             return throwError(err);
         }
         if (status === 400) {
-            this.toastr.warningToastr(err.error["message"], Message.WARNING);
+            if (err.error["message"]) {
+                this.toastr.warningToastr(err.error["message"], Message.WARNING);
+            }
+            this.toastr.warningToastr(err.error, Message.ERROR);
+            this.router.navigate([""]);
             return throwError(err);
         }
         return null;

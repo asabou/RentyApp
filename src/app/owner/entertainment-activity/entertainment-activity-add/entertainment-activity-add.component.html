@@ -62,8 +62,8 @@
             </table>
         </div>
         <div class="flex-display">
-            <button class="btn btn-light button-action padding-2" (click)="onCancel()">Cancel</button>
-            <button class="btn btn-light button-action padding-2" (click)="onSaveEntertainmentActivityClick()">Save</button>
+            <button mat-button (click)="onCancel()">Cancel</button>
+            <button mat-button (click)="onSaveEntertainmentActivityClick()" [disabled]="isSaveDisabled()">Save</button>
         </div>
       </mat-expansion-panel>
 </div>

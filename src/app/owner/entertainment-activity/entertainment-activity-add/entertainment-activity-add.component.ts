@@ -43,4 +43,8 @@ export class EntertainmentActivityAddComponent implements OnInit {
     });
   }
 
+  isSaveDisabled(): boolean {
+    return (!this.entertainmentActivity.entertainmentActivityId || !this.entertainmentActivity.price || !this.entertainmentActivity.maxPeopleAllowed);
+  }
+
 }

@@ -76,6 +76,9 @@ export class EntertainmentPlaceEditComponent implements OnInit {
     });
   }
 
-
-
+  isSaveDisabled(): boolean {
+    return (!this.entertainmentPlace || !this.entertainmentPlace.name || !this.entertainmentPlace.address.county || 
+      !this.entertainmentPlace.address.city || !this.entertainmentPlace.address.street || !this.entertainmentPlace.address.number
+      || !this.entertainmentPlace.description || !this.image);
+  }
 }

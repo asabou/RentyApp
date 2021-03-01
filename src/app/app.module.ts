@@ -66,6 +66,10 @@ import { EntertainmentPlaceAddComponent } from './owner/entertainment-places/ent
 import { QuestionMarkInfoComponent } from './commons/question-mark-info/question-mark-info.component';
 import { EntertainmentActivityAddComponent } from './owner/entertainment-activity/entertainment-activity-add/entertainment-activity-add.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PaymentComponent } from './payment/payment.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { environment } from 'src/environments/environment';
+import { PaymentService } from './payment/shared/payment.service';
 
 @NgModule({
   declarations: [
@@ -93,7 +97,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     EntertainmentActivityEditComponent,
     EntertainmentPlaceAddComponent,
     QuestionMarkInfoComponent,
-    EntertainmentActivityAddComponent
+    EntertainmentActivityAddComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +134,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatChipsModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxStripeModule.forRoot(environment.stripePublishableKey)
   ],
   providers: [ 
     LoginService, 
@@ -142,6 +148,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     RenterGuard, 
     OwnerGuard,
     ImageBytesService,
+    PaymentService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

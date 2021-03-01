@@ -1,10 +1,13 @@
 <div style="text-align: -webkit-center;">
-    <mat-card style="max-width: 70%;">
+    <mat-card style="max-width: 70%; margin:auto; background-color: rgb(135, 167, 228);">
+      <h6 style="text-align: right;" *ngIf="!isTokenExpired">
+        <button mat-button (click)="deleteAccount()">Delete account</button>
+      </h6>
       <mat-card-header>
         <mat-card-title>Login/Register</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-tab-group>
+        <mat-tab-group style="max-width: 50%">
           <mat-tab label="Login">
             <mat-form-field style="width: 100%;">
               <mat-label>Username</mat-label>
@@ -30,6 +33,65 @@
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <button mat-button color="primary" (click)="login()" [disabled]="isLoginButtonDisabled()">Login</button>
+            <button mat-button color="primary" (click)="resetPassword()" *ngIf="!isTokenExpired">Forgot password?</button>
+            <button mat-button color="primary" (click)="updateAccount()" *ngIf="!isTokenExpired">Update account</button>
+            <mat-form-field style="width: 100%;" *ngIf="newPasswordFieldVisible">
+              <mat-label>New Password</mat-label>
+              <input 
+                type="password" 
+                matInput 
+                required
+                autocomplete="off"
+                placeholder="New Password" 
+                [(ngModel)]="newPassword">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <mat-form-field style="width: 100%" *ngIf="updateAccountVisible">
+              <mat-label>FirstName:</mat-label>
+              <input 
+                type="text"
+                matInput 
+                placeholder="Username"
+                required 
+                autocomplete="off"
+                [(ngModel)]="updateUser.firstName"
+              >
+            </mat-form-field>
+            <mat-form-field style="width: 100%" *ngIf="updateAccountVisible">
+              <mat-label>LastName:</mat-label>
+              <input 
+                type="text"
+                matInput 
+                placeholder="LastName"
+                required 
+                autocomplete="off"
+                [(ngModel)]="updateUser.lastName"
+              >
+            </mat-form-field>
+            <mat-form-field style="width: 100%" *ngIf="updateAccountVisible">
+              <mat-label>Email:</mat-label>
+              <input 
+                type="text"
+                matInput 
+                placeholder="Email"
+                required 
+                autocomplete="off"
+                [(ngModel)]="updateUser.email"
+              >
+            </mat-form-field>
+            <mat-form-field style="width: 100%" *ngIf="updateAccountVisible">
+              <mat-label>Tel. number:</mat-label>
+              <input 
+                type="text"
+                matInput 
+                placeholder="Tel number"
+                required 
+                autocomplete="off"
+                [(ngModel)]="updateUser.telNumber"
+              >
+            </mat-form-field>
+            <button mat-button color="primary" (click)="confirmUpdate()" *ngIf="updateAccountVisible" [disabled]="isUpdateAccountButtonDisabled()">Confirm update</button>
+            <button mat-button color="primary" (click)="confirmReset()" *ngIf="newPasswordFieldVisible" [disabled]="!newPassword">Confirm reset</button>
           </mat-tab>
           <mat-tab label="Register">
             <mat-form-field style="width: 100%;">

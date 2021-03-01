@@ -80,4 +80,9 @@ export class RenterService extends AbstractService {
         let url = RENTER_URL + "/find-entertainment-activity/" + id;
         return this.http.get<EntertainmentActivity>(url);
     }
+
+    findCurrentUser(): Observable<UserDetails> {
+        let url = RENTER_URL + "/find-user-details";
+        return this.http.get<UserDetails>(url);
+    }
 }

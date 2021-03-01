@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { LoginService } from 'src/app/login/shared/login.service';
 import { EntertainmentActivityPlaceSearchObject } from 'src/app/owner/shared/entertainment-activity-place-search.model';
 import { DateUtils } from 'src/app/utils/date-utils.model';
@@ -9,6 +10,7 @@ import { DialogUtils } from 'src/app/utils/dialog-utils.model';
 import { ReservationConfirmComponent } from '../reservation-confirm/reservation-confirm.component';
 import { RenterService } from '../shared/renter.service';
 import { ReservationOutput } from './shared/reservation-output.model';
+import { SharedData } from './shared/shared-data.model';
 
 @Component({
   selector: 'app-reservation-scheduler',
@@ -24,9 +26,11 @@ export class ReservationSchedulerComponent implements OnInit, OnDestroy {
   schedulerMatrix: string[][] = [];
   reservationConfirmRef: MatDialogRef<ReservationConfirmComponent>;
   subs: Subscription;
+  price: number;
 
   getAllData(): void {
     this.getActiveReservationsForActivityAndPlace();
+    this.getPriceFromUrl();
     this.canRender = true;
   }
 
@@ -48,8 +52,11 @@ export class ReservationSchedulerComponent implements OnInit, OnDestroy {
   }
 
   private openReservationConfirmDialog(i: number, j: number): void {
-    let dialogConfig = DialogUtils.createDefaultPanelDialogConfig(300);
-    dialogConfig.data = this.createReservationOutput(i,j);
+    let dialogConfig = DialogUtils.createDefaultPanelDialogConfig(500);
+    let sharedData = new SharedData();
+    sharedData.price = this.price;
+    sharedData.reservationOutput = this.createReservationOutput(i,j);
+    dialogConfig.data = sharedData;
     this.reservationConfirmRef = this.matDialog.open(
       ReservationConfirmComponent, 
       dialogConfig
@@ -102,6 +109,12 @@ export class ReservationSchedulerComponent implements OnInit, OnDestroy {
       searchObj.entertainmentPlace = params["entertainmentPlace"];
     });
     return searchObj;
+  }
+
+  private getPriceFromUrl(): void {
+    this.route.queryParams.subscribe(params => {
+      this.price = params["price"];
+    });
   }
 
   private initSchedulerMatrix() {

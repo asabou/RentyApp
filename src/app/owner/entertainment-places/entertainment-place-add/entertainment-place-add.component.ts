@@ -65,5 +65,12 @@ export class EntertainmentPlaceAddComponent implements OnInit {
     }
   }
 
+  isSaveDisabled(): boolean {
+    return (!this.entertainmentPlace.name || !this.entertainmentPlace.entertainmentActivity || !this.entertainmentPlace.pricePerHour
+      || !this.entertainmentPlace.maxPeopleAllowed || !this.entertainmentPlace.address.county || 
+      !this.entertainmentPlace.address.city || !this.entertainmentPlace.address.street || !this.entertainmentPlace.address.number
+      || !this.entertainmentPlace.description);
+  }
+
 
 }

@@ -23,11 +23,34 @@
             <td><div>Rental user:</div></td>
             <td colspan="3"><div> {{ reservationConfirm.rental }}</div></td>
         </tr>
+        <tr>
+            <td><div>Price:</div></td>
+            <td colspan="3"><div>{{ price }} {{ 'RON' }}</div></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" placeholder="Credit Card Number" name="cardNumber" [(ngModel)]="card.number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" placeholder="Expiration Month" name="expMonth" [(ngModel)]="card.exp_month">
+            </td>
+            <td>
+                <input type="text" placeholder="Expiration Year" name="expYear" [(ngModel)]="card.exp_year">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" placeholder="CVC" name="cvc" [(ngModel)]="card.cvc">
+            </td>
+        </tr>
     </table>
 </div>
 <div mat-dialog-actions>
     <div class="flex-display">
-        <button mat-button class="btn btn-light button-action" (click)="confirmReservation()">Confirm</button>
-        <button mat-button class="btn btn-light button-action" (click)="abordReservation()">Abord</button>
+        <button mat-button class="btn btn-light button-action" (click)="confirmReservation()"
+        [disabled]="isOkDisabled()">Confirm</button>
+        <button mat-button class="btn btn-light button-action" (click)="abortReservation()">Abort</button>
     </div>
 </div>

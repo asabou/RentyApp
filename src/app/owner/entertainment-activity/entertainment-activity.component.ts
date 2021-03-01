@@ -44,7 +44,7 @@ export class EntertainmentActivityComponent extends AbstractComponent implements
   }
 
   onBookOnlineClick(): void {
-    this.router.navigate(['reservation-scheduler'], { queryParams: { entertainmentPlace: this.entActivityPlaceSearchObj.entertainmentPlace , entertainmentActivity: this.entActivityPlaceSearchObj.entertainmentActivity }});
+    this.router.navigate(['reservation-scheduler'], { queryParams: { entertainmentPlace: this.entActivityPlaceSearchObj.entertainmentPlace , entertainmentActivity: this.entActivityPlaceSearchObj.entertainmentActivity, price: this.entertainmentActivity.entertainmentActivityPrice }});
   }
 
   onEditActivityClick() {

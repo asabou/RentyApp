@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 import { AnonService } from 'src/app/anon/shared/anon.service';
 import { LoginService } from 'src/app/login/shared/login.service';
 import { EntertainmentPlace } from '../shared/entertainment-place.model';
@@ -9,10 +10,11 @@ import { OwnerService } from '../shared/owner.service';
   templateUrl: './entertainment-places.component.html',
   styleUrls: ['./entertainment-places.component.scss']
 })
-export class EntertainmentPlacesComponent implements OnInit {
+export class EntertainmentPlacesComponent implements OnInit, OnDestroy {
   entertainmentPlaces: EntertainmentPlace[] = [];
   canRender = false;
   hasRights = false;
+  subs: Subscription;
 
   constructor(private loginService: LoginService, 
               private anonService: AnonService, 
@@ -41,6 +43,9 @@ export class EntertainmentPlacesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllData();
+    this.subs = interval(3000).subscribe(() => {
+      this.hasRights = this.loginService.hasOwnerRights() && !this.loginService.hasAdminRights();
+    });
   }
 
   onEntertainmentPlaceDelete(data: any) {
@@ -59,4 +64,9 @@ export class EntertainmentPlacesComponent implements OnInit {
     this.entertainmentPlaces = entPlaces;
     this.canRender = true;
   }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+  
 }

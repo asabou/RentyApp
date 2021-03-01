@@ -58,5 +58,8 @@ export class EntertainmentActivityEditComponent implements OnInit {
     });
   }
 
+  isSaveDisabled(): boolean {
+    return (!this.entActivityOutput.price || !this.entActivityOutput.maxPeopleAllowed);
+  }
 
 }
