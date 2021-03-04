@@ -66,10 +66,9 @@ import { EntertainmentPlaceAddComponent } from './owner/entertainment-places/ent
 import { QuestionMarkInfoComponent } from './commons/question-mark-info/question-mark-info.component';
 import { EntertainmentActivityAddComponent } from './owner/entertainment-activity/entertainment-activity-add/entertainment-activity-add.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PaymentComponent } from './payment/payment.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from 'src/environments/environment';
-import { PaymentService } from './payment/shared/payment.service';
+import { PaymentService } from './renter/reservation-confirm/shared/payment.service';
 
 @NgModule({
   declarations: [
@@ -97,8 +96,7 @@ import { PaymentService } from './payment/shared/payment.service';
     EntertainmentActivityEditComponent,
     EntertainmentPlaceAddComponent,
     QuestionMarkInfoComponent,
-    EntertainmentActivityAddComponent,
-    PaymentComponent
+    EntertainmentActivityAddComponent
   ],
   imports: [
     BrowserModule,
