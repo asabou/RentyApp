@@ -3,13 +3,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { forkJoin } from 'rxjs';
 import { LoginService } from 'src/app/login/shared/login.service';
-import { PaymentService } from 'src/app/payment/shared/payment.service';
 import { Message } from 'src/app/utils/message.model';
 import { environment } from 'src/environments/environment';
 import { ReservationOutput } from '../reservation-scheduler/shared/reservation-output.model';
 import { SharedData } from '../reservation-scheduler/shared/shared-data.model';
 import { RenterService } from '../shared/renter.service';
 import { Card } from './shared/card.model';
+import { PaymentService } from './shared/payment.service';
 import { ReservationConfirm } from './shared/reservation-confirm.model';
 
 @Component({
