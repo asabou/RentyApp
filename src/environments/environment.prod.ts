@@ -1,4 +1,5 @@
 export const environment = {
   prod: true,
-  stripePublishableKey: ""
+  stripePublishableKey: "",
+  name: "prod"
 };

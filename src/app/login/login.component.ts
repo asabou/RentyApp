@@ -6,6 +6,7 @@ import { User } from '../admin/users/shared/user.model';
 import { AnonService } from '../anon/shared/anon.service';
 import { RenterService } from '../renter/shared/renter.service';
 import { Message } from '../utils/message.model';
+import { ServicesUtils } from '../utils/services-utils.model';
 import { AppUser } from './shared/app-user.model';
 import { LoginService } from './shared/login.service';
 
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
+    this.user.user.password = ServicesUtils.base64Encode(this.user.user.password);
     if (this.registerAs === "renter") {
       this.anonService.createRenterUser(this.user).subscribe(data => {
         this.toastr.successToastr(Message.REGISTER_SUCCESSFULLY);

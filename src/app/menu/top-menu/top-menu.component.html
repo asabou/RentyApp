@@ -1,5 +1,8 @@
 <mat-toolbar style="background-color: rgb(84, 141, 192);">
-    <mat-icon [routerLink]="['/']">home</mat-icon>
+    <div style="display: flex;">
+        <mat-icon [routerLink]="['/']">home</mat-icon>
+        <div *ngIf="env === 'dev' || env === 'test'" class="col-xs-6" style="margin-left: 10%;">Env: {{ env }}</div>
+    </div>
     <div>Renty</div>
     <div>
         <button mat-icon-button>

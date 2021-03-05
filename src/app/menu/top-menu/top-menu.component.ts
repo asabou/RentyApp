@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { LoginService } from 'src/app/login/shared/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-top-menu',
@@ -17,7 +18,10 @@ export class TopMenuComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.env = environment.name;
   }
+
+  env: string = "";
 
   logout() {
     this.loginService.logout();
