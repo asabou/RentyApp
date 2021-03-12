@@ -1,0 +1,19 @@
+<div style="overflow: hidden;">
+    <app-statistics-search
+        (searchStarted)="onSearchStarted()"
+        (searchActivitiesEnded)="onSearchActivitiesEnded($event)"
+        (searchPlacesEnded)="onSearchPlacesEnded($event)"
+        (searchDatesEnded)="onSearchDatesEnded($event)"
+        (searchHoursEnded)="onSearchHoursEnded($event)"
+    ></app-statistics-search>
+    <div *ngIf="!canRender" class="spinner-box">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="canRender">
+        <app-abstract-table
+            [tableId]="tableId"
+            [objectList]="objects"
+        >
+        </app-abstract-table>
+    </div>
+</div>

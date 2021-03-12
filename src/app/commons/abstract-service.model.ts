@@ -4,6 +4,8 @@ import { UserSearchObject } from "../admin/users/shared/user-search.model";
 import { PlaceSearchObj } from "../owner/entertainment-places/entertainment-place-search/shared/place-search.model";
 import { EntertainmentActivityPlaceSearchObject } from "../owner/shared/entertainment-activity-place-search.model";
 import { EntertainmentPlaceSearchObject } from "../owner/shared/entertainment-place-search.model";
+import { StatisticsSearchObj } from "../owner/statistics/shared/statistics-search.model";
+import { DateUtils } from "../utils/date-utils.model";
 import { ServicesUtils } from "../utils/services-utils.model";
 
 export class AbstractService {
@@ -43,6 +45,20 @@ export class AbstractService {
         }
         if (!!searchObj.activity) {
             params = params.append("activity", searchObj.activity);
+        }
+        return params;
+    }
+
+    public getHttpParamsFromStatisticsSearchObj(searchObj: StatisticsSearchObj): HttpParams {
+        let params = new HttpParams();
+        if (!!searchObj.dateFrom) {
+            params = params.append("dateFrom", DateUtils.getDateAsString(searchObj.dateFrom));
+        }
+        if (!!searchObj.dateTo) {
+            params = params.append("dateTo", DateUtils.getDateAsString(searchObj.dateTo));
+        }
+        if (!!searchObj.placeId) {
+            params = params.append("placeId", searchObj.placeId.toString())
         }
         return params;
     }

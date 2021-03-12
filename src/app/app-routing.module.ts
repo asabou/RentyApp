@@ -8,6 +8,7 @@ import { RenterGuard } from './guards/renter.guard';
 import { LoginComponent } from './login/login.component';
 import { EntertainmentPlaceDetailsComponent } from './owner/entertainment-places/entertainment-place-details/entertainment-place-details.component';
 import { EntertainmentPlacesComponent } from './owner/entertainment-places/entertainment-places.component';
+import { StatisticsComponent } from './owner/statistics/statistics.component';
 import { ReservationSchedulerComponent } from './renter/reservation-scheduler/reservation-scheduler.component';
 import { ReservationsComponent } from './renter/reservations/reservations.component';
 import { Constants } from './utils/constants.model';
@@ -53,8 +54,12 @@ const routes: Routes = [
     path: 'owner-reservations',
     component: ReservationsComponent,
     canActivate: [OwnerGuard]
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    canActivate: [OwnerGuard]
   }
-
 ];
 
 @NgModule({

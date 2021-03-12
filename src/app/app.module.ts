@@ -69,6 +69,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from 'src/environments/environment';
 import { PaymentService } from './renter/reservation-confirm/shared/payment.service';
+import { StatisticsComponent } from './owner/statistics/statistics.component';
+import { StatisticsSearchComponent } from './owner/statistics/statistics-search/statistics-search.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -96,7 +100,9 @@ import { PaymentService } from './renter/reservation-confirm/shared/payment.serv
     EntertainmentActivityEditComponent,
     EntertainmentPlaceAddComponent,
     QuestionMarkInfoComponent,
-    EntertainmentActivityAddComponent
+    EntertainmentActivityAddComponent,
+    StatisticsComponent,
+    StatisticsSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -133,6 +139,8 @@ import { PaymentService } from './renter/reservation-confirm/shared/payment.serv
     MatAutocompleteModule,
     MatSelectModule,
     MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxStripeModule.forRoot(environment.stripePublishableKey)
   ],
   providers: [ 

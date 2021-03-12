@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/commons/abstract.component';
 import { leftMenuNavItems } from '../nav-items';
 
 @Component({

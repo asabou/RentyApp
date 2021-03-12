@@ -5,7 +5,11 @@ import { SERVER_URL } from "src/app/app.component";
 import { AbstractService } from "src/app/commons/abstract-service.model";
 import { ReservationInput } from "src/app/renter/reservation-scheduler/shared/reservation-input.model";
 import { EntertainmentActivityOutput } from "../entertainment-activity/entertainment-activity-edit/shared/entertainment-activity-output.model";
-import { EntertainmentActivity } from "../entertainment-activity/shared/entertainment-activity.model";
+import { CustomEntertainmentActivity } from "../statistics/shared/custom-entertainment-activity.model";
+import { CustomEntertainmentPlace } from "../statistics/shared/custom-entertainment-place.model";
+import { CustomReservationDate } from "../statistics/shared/custom-reservation-date.model";
+import { CustomReservationHour } from "../statistics/shared/custom-reservation-hour.model";
+import { StatisticsSearchObj } from "../statistics/shared/statistics-search.model";
 import { EntertainmentPlaceOutput } from "./entertainment-place-output.model";
 import { EntertainmentPlace } from "./entertainment-place.model";
 
@@ -60,5 +64,29 @@ export class OwnerService extends AbstractService {
     createEntertainmentActivityForPlace(entAct: EntertainmentActivityOutput): Observable<Object> {
         let url = OWNER_URL + "/create-entertainment-activity-for-place";
         return this.http.post<EntertainmentActivityOutput>(url, entAct);
+    }
+
+    getTopMostRentedEntertainmentActivities(searchObj: StatisticsSearchObj): Observable<CustomEntertainmentActivity[]> {
+        let url = OWNER_URL + "/most-rented-entertainment-activities";
+        let params = this.getHttpParamsFromStatisticsSearchObj(searchObj);
+        return this.http.get<CustomEntertainmentActivity[]>(url, {params: params});
+    }
+
+    getTopMostRentedEntertainmentPlaces(searchObj: StatisticsSearchObj): Observable<CustomEntertainmentPlace[]> {
+        let url = OWNER_URL + "/most-rented-entertainment-places";
+        let params = this.getHttpParamsFromStatisticsSearchObj(searchObj);
+        return this.http.get<CustomEntertainmentPlace[]>(url, {params: params});
+    }
+
+    getTopMostRentedReservationHour(searchObj: StatisticsSearchObj): Observable<CustomReservationHour[]> {
+        let url = OWNER_URL + "/most-rented-reservation-hour";
+        let params = this.getHttpParamsFromStatisticsSearchObj(searchObj);
+        return this.http.get<CustomReservationHour[]>(url, {params: params});
+    }
+
+    getTopMostRentedReservationDate(searchObj: StatisticsSearchObj): Observable<CustomReservationDate[]> {
+        let url = OWNER_URL + "/most-rented-reservation-date";
+        let params = this.getHttpParamsFromStatisticsSearchObj(searchObj);
+        return this.http.get<CustomReservationDate[]>(url, {params: params});
     }
 }

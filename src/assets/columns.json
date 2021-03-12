@@ -71,5 +71,57 @@
                 "colName": "Tel. number"
             }
         ]
+    },
+    "topActivities": {
+        "fields": [
+            {
+                "colId": "entertainmentActivity",
+                "colName": "Activity"
+            },
+            {
+                "colId": "entertainmentActivityDescription",
+                "colName": "Activity description"
+            },
+            {
+                "colId": "nrReservations",
+                "colName": "No. Reservations"
+            }
+        ]
+    },
+    "topPlaces": {
+        "fields": [
+            {
+                "colId": "entertainmentPlace",
+                "colName": "Place"
+            }, 
+            {
+                "colId": "nrReservations",
+                "colName": "No. Reservations"
+            }
+        ]
+    },
+    "topDates": {
+        "fields": [
+            {
+                "colId": "reservationDate",
+                "colName": "Date"
+            },
+            {
+                "colId": "nrReservations",
+                "colName": "No. Reservations"
+            }
+        ]
+    },
+    "topHours": {
+        "fields": [
+            {
+                "colId": "reservationHour",
+                "colName": "Hour"
+            },
+            {
+                "colId": "nrReservations",
+                "colName": "No. Reservations"
+            }
+        ]
     }
 }

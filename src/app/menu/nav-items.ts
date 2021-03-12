@@ -35,6 +35,11 @@ export const leftMenuNavItems: NavItem[] = [
                 name: 'Reservations',
                 route: 'owner-reservations', 
                 icon: 'book_online'
+            },
+            {
+                name: 'Statistics',
+                route: 'statistics',
+                icon: 'insights'
             }
         ]
     },

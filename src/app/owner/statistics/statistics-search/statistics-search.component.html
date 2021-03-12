@@ -1,0 +1,151 @@
+<div class="col-xs-12 search-container">
+    <table class="display-data">
+        <tr>
+            <td colspan="6">
+                <div style="text-align: center;"><b>Find top most rented entertainment activities</b></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date from</mat-label>
+                    <input matInput [matDatepicker]="picker11" [(ngModel)]="searchObjActivities.dateFrom">
+                    <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                    <mat-datepicker #picker11></mat-datepicker>
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date to</mat-label>
+                    <input matInput [matDatepicker]="picker12" [(ngModel)]="searchObjActivities.dateTo">
+                    <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                    <mat-datepicker #picker12></mat-datepicker>
+                  </mat-form-field>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <button mat-button (click)="onSearchTopActivities()">Search<mat-icon>search</mat-icon></button>
+            </td>
+            <td>
+                <button mat-button (click)="clearSearchActivities()">Clear<mat-icon>clear</mat-icon></button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div style="text-align: center;"><b>Find top most rented entertainment places</b></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date from</mat-label>
+                    <input matInput [matDatepicker]="picker21" [(ngModel)]="searchObjPlaces.dateFrom">
+                    <mat-datepicker-toggle matSuffix [for]="picker21"></mat-datepicker-toggle>
+                    <mat-datepicker #picker21></mat-datepicker>
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date to</mat-label>
+                    <input matInput [matDatepicker]="picker22" [(ngModel)]="searchObjPlaces.dateTo">
+                    <mat-datepicker-toggle matSuffix [for]="picker22"></mat-datepicker-toggle>
+                    <mat-datepicker #picker22></mat-datepicker>
+                  </mat-form-field>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <button mat-button (click)="onSearchTopPlaces()">Search<mat-icon>search</mat-icon></button>
+            </td>
+            <td>
+                <button mat-button (click)="clearSearchPlaces()">Clear<mat-icon>clear</mat-icon></button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div style="text-align: center;"><b>Find top most rented hours</b></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date from</mat-label>
+                    <input matInput [matDatepicker]="picker31" [(ngModel)]="searchObjHours.dateFrom">
+                    <mat-datepicker-toggle matSuffix [for]="picker31"></mat-datepicker-toggle>
+                    <mat-datepicker #picker31></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date to</mat-label>
+                    <input matInput [matDatepicker]="picker32" [(ngModel)]="searchObjHours.dateTo">
+                    <mat-datepicker-toggle matSuffix [for]="picker32"></mat-datepicker-toggle>
+                    <mat-datepicker #picker32></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>
+                <div *ngIf="hasOnlyOwnerRights">Place:</div>
+            </td>
+            <td>
+                <div *ngIf="hasOnlyOwnerRights">
+                    <select 
+                        [(ngModel)]="searchObjHours.placeId"
+                        name="hoursPlaceId"
+                        class="combo form-control one-input input-text"
+                        style="background-color: #dee0e4;"
+                    >
+                        <option
+                            [ngValue]="place.id" *ngFor="let place of places"
+                        >
+                            {{ place.name }}
+                        </option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <button mat-button (click)="onSearchTopHours()">Search<mat-icon>search</mat-icon></button>
+            </td>
+            <td>
+                <button mat-button (click)="clearSearchHours()">Clear<mat-icon>clear</mat-icon></button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div style="text-align: center;"><b>Find top most rented dates</b></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="text-align: center;">All time</div>
+            </td>
+            <td>
+                <div *ngIf="hasOnlyOwnerRights">Place:</div>
+            </td>
+            <td>
+                <div *ngIf="hasOnlyOwnerRights">
+                    <select 
+                        [(ngModel)]="searchObjDates.placeId"
+                        name="hoursPlaceId"
+                        class="combo form-control one-input input-text"
+                        style="background-color: #dee0e4;"
+                    >
+                        <option
+                            [ngValue]="place.id" *ngFor="let place of places"
+                        >
+                            {{ place.name }}
+                        </option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <button mat-button (click)="onSearchTopDates()">Search<mat-icon>search</mat-icon></button>
+            </td>
+            <td>
+                <button 
+                    mat-button (click)="clearSearchDates()"
+                >Clear<mat-icon>clear</mat-icon></button>
+            </td>
+        </tr>
+    </table>
+</div>
