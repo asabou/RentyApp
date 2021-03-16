@@ -23,6 +23,7 @@ export class ReservationsComponent extends AbstractComponent implements OnInit {
   
   reservations: ReservationInput[];
   isLoading: boolean;
+  actions = ['delete'];
 
   ngOnInit(): void {
     this.getAllData();
@@ -36,6 +37,7 @@ export class ReservationsComponent extends AbstractComponent implements OnInit {
     if (adminRights) { 
       this.renterService.getAllActiveReservations().subscribe(reserv => {
         this.reservations = reserv;
+        this.actions = [];
         this.isLoading = false;
       });
       return;
