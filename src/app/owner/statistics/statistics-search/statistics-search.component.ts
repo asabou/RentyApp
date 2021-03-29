@@ -22,12 +22,14 @@ export class StatisticsSearchComponent implements OnInit {
   searchObjPlaces: StatisticsSearchObj;
   searchObjDates: StatisticsSearchObj;
   searchObjHours: StatisticsSearchObj;
+  showAs: string = "bar";
 
   @Output() searchStarted: EventEmitter<any> = new EventEmitter<any>();
   @Output() searchActivitiesEnded: EventEmitter<CustomEntertainmentActivity[]> = new EventEmitter<CustomEntertainmentActivity[]>();
   @Output() searchPlacesEnded: EventEmitter<CustomEntertainmentPlace[]> = new EventEmitter<CustomEntertainmentPlace[]>();
   @Output() searchDatesEnded: EventEmitter<CustomReservationDate[]> = new EventEmitter<CustomReservationDate[]>();
   @Output() searchHoursEnded: EventEmitter<CustomReservationHour[]> = new EventEmitter<CustomReservationHour[]>();
+  @Output() showAsEvent: EventEmitter<string> = new EventEmitter<string>();
 
   places: EntertainmentPlace[] = [];
 
@@ -52,6 +54,7 @@ export class StatisticsSearchComponent implements OnInit {
   }
  
   onSearchTopActivities(): void {
+    this.showAsEmit();
     this.searchStarted.emit();
     this.ownerService.getTopMostRentedEntertainmentActivities(this.searchObjActivities).subscribe(activities => {
       this.searchActivitiesEnded.emit(activities);
@@ -63,6 +66,7 @@ export class StatisticsSearchComponent implements OnInit {
   }
 
   onSearchTopPlaces(): void {
+    this.showAsEmit();
     this.searchStarted.emit();
     this.ownerService.getTopMostRentedEntertainmentPlaces(this.searchObjPlaces).subscribe(places => {
       this.searchPlacesEnded.emit(places);
@@ -74,6 +78,7 @@ export class StatisticsSearchComponent implements OnInit {
   }
 
   onSearchTopDates(): void {
+    this.showAsEmit();
     this.searchStarted.emit();
     this.ownerService.getTopMostRentedReservationDate(this.searchObjDates).subscribe(dates => {
       this.searchDatesEnded.emit(dates);
@@ -85,6 +90,7 @@ export class StatisticsSearchComponent implements OnInit {
   }
 
   onSearchTopHours(): void {
+    this.showAsEmit();
     this.searchStarted.emit();
     this.ownerService.getTopMostRentedReservationHour(this.searchObjHours).subscribe(hours => {
       this.searchHoursEnded.emit(hours);
@@ -93,6 +99,10 @@ export class StatisticsSearchComponent implements OnInit {
 
   clearSearchHours(): void {
     this.searchObjHours.resetFields();
+  }
+
+  private showAsEmit(): void {
+    this.showAsEvent.emit(this.showAs);
   }
 
 }

@@ -1,6 +1,11 @@
 <div class="col-xs-12 search-container">
     <table class="display-data">
         <tr>
+            <div style="text-align: center;"><b>Show as:</b></div>
+            <input type="radio" value="bar" [(ngModel)]="showAs" checked name="showAs"> Bar Chart
+            <input type="radio" value="table" [(ngModel)]="showAs" name="showAs"> Table Data
+        </tr>
+        <tr>
             <td colspan="6">
                 <div style="text-align: center;"><b>Find top most rented entertainment activities</b></div>
             </td>
@@ -93,7 +98,7 @@
                         [(ngModel)]="searchObjHours.placeId"
                         name="hoursPlaceId"
                         class="combo form-control one-input input-text"
-                        style="background-color: #dee0e4;"
+                        style="background-color: #d2e7e7;"
                     >
                         <option
                             [ngValue]="place.id" *ngFor="let place of places"
@@ -128,7 +133,7 @@
                         [(ngModel)]="searchObjDates.placeId"
                         name="hoursPlaceId"
                         class="combo form-control one-input input-text"
-                        style="background-color: #dee0e4;"
+                        style="background-color: #d2e7e7;"
                     >
                         <option
                             [ngValue]="place.id" *ngFor="let place of places"

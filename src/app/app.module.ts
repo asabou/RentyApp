@@ -72,7 +72,9 @@ import { PaymentService } from './renter/reservation-confirm/shared/payment.serv
 import { StatisticsComponent } from './owner/statistics/statistics.component';
 import { StatisticsSearchComponent } from './owner/statistics/statistics-search/statistics-search.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChartsModule } from 'ng2-charts';
+import { AbstractBarChartComponent } from './commons/abstract-bar-chart/abstract-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     QuestionMarkInfoComponent,
     EntertainmentActivityAddComponent,
     StatisticsComponent,
-    StatisticsSearchComponent
+    StatisticsSearchComponent,
+    AbstractBarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +144,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxStripeModule.forRoot(environment.stripePublishableKey)
+    NgxStripeModule.forRoot(environment.stripePublishableKey),
+    ChartsModule
   ],
   providers: [ 
     LoginService, 
