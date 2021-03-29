@@ -5,15 +5,23 @@
         (searchPlacesEnded)="onSearchPlacesEnded($event)"
         (searchDatesEnded)="onSearchDatesEnded($event)"
         (searchHoursEnded)="onSearchHoursEnded($event)"
+        (showAsEvent)="onShowAsEvent($event)"
     ></app-statistics-search>
     <div *ngIf="!canRender" class="spinner-box">
         <app-spinner></app-spinner>
     </div>
     <div *ngIf="canRender">
-        <app-abstract-table
-            [tableId]="tableId"
-            [objectList]="objects"
-        >
-        </app-abstract-table>
+        <div *ngIf="showAs === 'table'">
+            <app-abstract-table
+                [tableId]="tableId"
+                [objectList]="objects">
+            </app-abstract-table>
+        </div>
+        <div *ngIf="showAs === 'bar'">
+            <app-abstract-bar-chart
+                [barChartLabels]="labels"
+                [barChartData]="data">
+            </app-abstract-bar-chart>
+        </div>
     </div>
 </div>
