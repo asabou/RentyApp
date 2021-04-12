@@ -25,16 +25,15 @@ export class EntertainmentPlacesComponent implements OnInit, OnDestroy {
     let ownerRights = this.loginService.hasOwnerRights();
     let renterRights = this.loginService.hasRenterRights();
     this.hasRights = ownerRights && !adminRights;
-    if ((adminRights || renterRights) || (!adminRights && !ownerRights && !renterRights)) {
-      this.anonService.getAllEntertainmentPlaces().subscribe(places => {
-        this.entertainmentPlaces = places;
-        this.canRender = true;
-      });
-      return;
-    }
     if (ownerRights && !adminRights) {
       this.ownerService.findAllOwnedEntertainmentPlaces().subscribe(place => {
         this.entertainmentPlaces = place;
+        this.canRender = true;
+      });
+      return;
+    } else {
+      this.anonService.getAllEntertainmentPlaces().subscribe(places => {
+        this.entertainmentPlaces = places;
         this.canRender = true;
       });
       return;
