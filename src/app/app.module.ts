@@ -75,6 +75,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChartsModule } from 'ng2-charts';
 import { AbstractBarChartComponent } from './commons/abstract-bar-chart/abstract-bar-chart.component';
+import { AbstractPieChartComponent } from './commons/abstract-pie-chart/abstract-pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { AbstractBarChartComponent } from './commons/abstract-bar-chart/abstract
     EntertainmentActivityAddComponent,
     StatisticsComponent,
     StatisticsSearchComponent,
-    AbstractBarChartComponent
+    AbstractBarChartComponent,
+    AbstractPieChartComponent
   ],
   imports: [
     BrowserModule,
