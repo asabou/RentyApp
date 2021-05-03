@@ -23,5 +23,12 @@
                 [barChartData]="data">
             </app-abstract-bar-chart>
         </div>
+        <div *ngIf="showAs === 'pie'">
+            <app-abstract-pie-chart
+                [pieChartLabels]="labels"
+                [pieChartData]="data"
+            >
+            </app-abstract-pie-chart>
+        </div>
     </div>
 </div>

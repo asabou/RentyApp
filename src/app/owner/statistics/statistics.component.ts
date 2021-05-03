@@ -20,7 +20,7 @@ export class StatisticsComponent implements OnInit {
   values = [];
   label = "No. reservations";
   data: ChartDataSets[] = [];
-  showAs: string = "";
+  showAs: string = "pie";
 
   constructor() { }
 
