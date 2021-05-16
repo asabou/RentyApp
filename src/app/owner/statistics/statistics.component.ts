@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { TableColumn } from 'src/app/commons/abstract-table/shared/table-column.model';
+import { SessionObjectService } from 'src/app/login/shared/session-object.service';
 import { CustomEntertainmentActivity } from './shared/custom-entertainment-activity.model';
 import { CustomEntertainmentPlace } from './shared/custom-entertainment-place.model';
 import { CustomReservationDate } from './shared/custom-reservation-date.model';
@@ -21,8 +23,10 @@ export class StatisticsComponent implements OnInit {
   label = "No. reservations";
   data: ChartDataSets[] = [];
   showAs: string = "pie";
+  header: string[] = [];
 
-  constructor() { }
+  constructor(public sessionObjectService: SessionObjectService) { 
+  }
 
   ngOnInit(): void {
   }
@@ -31,10 +35,21 @@ export class StatisticsComponent implements OnInit {
     this.canRender = false;
   }
 
+  getHeaderForTable(tableId: string) {
+    this.header = [];
+    let tableData = this.sessionObjectService.getTableColumns()[tableId];
+    for (let tableCol of tableData["fields"]) {
+      let tableColumn = new TableColumn(tableCol);
+      let colName = tableColumn.colName.replace(" ", "-");
+      this.header.push(colName);
+    }
+  }
+
   onSearchActivitiesEnded(activities: CustomEntertainmentActivity[]): void {
     this.objects = activities;
     this.prepareActivitiesForChart(activities);
     this.tableId = "topActivities";
+    this.getHeaderForTable(this.tableId);
     this.data = [];
     this.data.push({data: this.values, label: this.label});
     this.canRender = true;
@@ -53,6 +68,7 @@ export class StatisticsComponent implements OnInit {
     this.objects = places;
     this.preparePlacesForChart(places);
     this.tableId = "topPlaces";
+    this.getHeaderForTable(this.tableId);
     this.data = [];
     this.data.push({data: this.values, label: this.label});
     this.canRender = true;
@@ -71,6 +87,7 @@ export class StatisticsComponent implements OnInit {
     this.objects = dates;
     this.prepareDatesForChart(dates);
     this.tableId = "topDates";
+    this.getHeaderForTable(this.tableId);
     this.data = [];
     this.data.push({data: this.values, label: this.label});
     this.canRender = true;
@@ -89,6 +106,7 @@ export class StatisticsComponent implements OnInit {
     this.objects = hours;
     this.prepareHoursForChart(hours);
     this.tableId = "topHours";
+    this.getHeaderForTable(this.tableId);
     this.data = [];
     this.data.push({data: this.values, label: this.label});
     this.canRender = true;

@@ -11,19 +11,27 @@
         <app-spinner></app-spinner>
     </div>
     <div *ngIf="canRender">
+        <app-abstract-export
+            [objects]="objects"
+            [label]="tableId"
+            [header]="header"
+            [type]="showAs"
+        >
+        </app-abstract-export>
         <div *ngIf="showAs === 'table'">
             <app-abstract-table
                 [tableId]="tableId"
                 [objectList]="objects">
             </app-abstract-table>
         </div>
-        <div *ngIf="showAs === 'bar'">
+        <div *ngIf="showAs === 'bar'" class="box-size">
             <app-abstract-bar-chart
+                style="text-align: center;"
                 [barChartLabels]="labels"
                 [barChartData]="data">
             </app-abstract-bar-chart>
         </div>
-        <div *ngIf="showAs === 'pie'">
+        <div *ngIf="showAs === 'pie'" class="box-size">
             <app-abstract-pie-chart
                 [pieChartLabels]="labels"
                 [pieChartData]="data"
