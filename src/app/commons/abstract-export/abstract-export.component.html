@@ -1,0 +1,10 @@
+<div style="display: flex;">
+    <div style="padding: 2%;">
+        <button mat-button (click)="exportToPNG()"
+            [disabled]="type === 'table'"
+        ><mat-icon>file_download</mat-icon>Export PNG</button>
+    </div>
+    <div style="padding: 2%;">
+        <button mat-button (click)="exportToCSV()"><mat-icon>file_download</mat-icon>Export CSV</button>
+    </div>
+</div>
