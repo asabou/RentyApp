@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-abstract-export',
@@ -28,31 +30,12 @@ export class AbstractExportComponent implements OnInit {
   }
 
   exportToCSV() {
-    let csvData = this.convertToCSV(this.objects, this.header);
-    let element = document.createElement('a');
-    element.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csvData);
-    element.target = '_blank';
-    element.style.visibility = 'hidden';
-    element.download = this.label + ".csv";
-    element.click();
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.objects);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.label);
+    const stream = XLSX.utils.sheet_to_csv(ws);
+    const blob = new Blob(['\ufeff', stream], { type: 'text/csv' });
+    saveAs(blob, this.label + ".csv");  
+  }
 }
 
-convertToCSV(objArray, headerList) {
-    let array = objArray;
-    let str = headerList.join(",") + "\r\n";
-  
-    for (let i = 0; i < array.length; i++) {
-      let keys = Object.keys(array[i]);
-      let lineArr = [];
-      for (let key of keys) {
-        let val = array[i][key];
-        lineArr.push(val.toString().replaceAll(" ", "-")); 
-      }
-      let line = lineArr.join(",") + "\r\n";
-      str += line;
-    }
-    return str;
- }
-
-
-}
