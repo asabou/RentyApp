@@ -40,8 +40,7 @@ export class StatisticsComponent implements OnInit {
     let tableData = this.sessionObjectService.getTableColumns()[tableId];
     for (let tableCol of tableData["fields"]) {
       let tableColumn = new TableColumn(tableCol);
-      let colName = tableColumn.colName.replace(" ", "-");
-      this.header.push(colName);
+      this.header.push(tableColumn.colName);
     }
   }
 
