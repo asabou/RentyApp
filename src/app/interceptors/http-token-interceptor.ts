@@ -69,6 +69,14 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             this.router.navigate([""]);
             return throwError(err);
         }
+        if (status === 402) {
+            if (err.error["message"]) {
+                this.toastr.errorToastr(err.error["message"], Message.ERROR);
+            } else {
+                this.toastr.errorToastr("Something went wrong!", Message.ERROR);
+            }
+        }
+
         return null;
     }
 
