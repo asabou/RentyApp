@@ -52,7 +52,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             return throwError(err);
         }
         if (status === 401 || status == 403) {
-            if (err.error["message"]) {
+            if (err.error && err.error["message"]) {
                 this.toastr.errorToastr(err.error["message"], Message.ERROR);
             } else {
                 this.toastr.errorToastr(err.error, Message.ERROR);
@@ -61,16 +61,16 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             return throwError(err);
         }
         if (status === 400) {
-            if (err.error["message"]) {
+            if (err.error && err.error["message"]) {
                 this.toastr.warningToastr(err.error["message"], Message.WARNING);
             } else {
-                this.toastr.warningToastr(err.error, Message.ERROR);
+                this.toastr.warningToastr("Something went wrong! Please try again!", Message.ERROR);
             }
             this.router.navigate([""]);
             return throwError(err);
         }
         if (status === 402) {
-            if (err.error["message"]) {
+            if (err.error && err.error["message"]) {
                 this.toastr.errorToastr(err.error["message"], Message.ERROR);
             } else {
                 this.toastr.errorToastr("Something went wrong!", Message.ERROR);
